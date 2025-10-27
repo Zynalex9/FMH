@@ -1,0 +1,54 @@
+declare
+  user_role text;
+  user_full_name text;
+  user_email text;
+  user_phone text;
+  user_zone text;
+  user_skills text;
+  user_availability text;
+begin
+  if new.raw_user_meta_data is null then
+    new.raw_user_meta_data := '{}'::jsonb;
+  end if;
+
+  user_full_name := coalesce(
+    new.raw_user_meta_data->>'full_name',
+    new.raw_user_meta_data->>'name',
+    'Anonymous'
+  );
+
+  user_email := coalesce(new.email, new.raw_user_meta_data->>'email');
+  user_phone := coalesce(new.raw_user_meta_data->>'phone', '');
+  user_role := coalesce(new.raw_user_meta_data->>'role', 'volunteer');
+  user_zone := coalesce(new.raw_user_meta_data->>'zone', '');
+  user_skills := coalesce(new.raw_user_meta_data->>'skills', '');
+  user_availability := coalesce(new.raw_user_meta_data->>'availability', '');
+
+  if not exists (select 1 from public.users where id = new.id) then
+    insert into public.users (
+      id,
+      email,
+      phone,
+      full_name,
+      role,
+      zone,
+      skills,
+      availability,
+      is_active,
+    )
+    values (
+      new.id,
+      user_email,
+      user_phone,
+      user_full_name,
+      user_role,
+      user_zone,
+      user_skills,
+      user_availability,
+      true,
+  
+    );
+  end if;
+
+  return new;
+end;
