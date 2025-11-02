@@ -8,17 +8,40 @@ import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { getUser } from "@/store/AuthSlice";
+import { getUser, handleUserLogout } from "@/store/AuthSlice";
+import { toast } from "sonner";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const { locale } = useParams();
   const { user } = useSelector((state: RootState) => state.user);
-  console.log("Navbar user:", user);
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    window.location.href = `/${locale}/signin`;
+    try {
+      setLoggingOut(true);
+      await supabase.auth.signOut();
+      await fetch("/api/auth/signout", {
+        method: "POST",
+        credentials: "include", // ensure cookies are sent
+      });
+      dispatch(handleUserLogout());
+      toast.success("Logged out successfully!");
+      window.location.href = `/${locale}/signin`;
+    } catch (err) {
+      console.error("Logout failed:", err);
+      toast.error("Failed to log out.");
+
+      // FORCE CLEAR ON ERROR
+      document.cookie.split(";").forEach((c) => {
+        document.cookie = c
+          .replace(/^ +/, "")
+          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      });
+      window.location.href = `/${locale}/signin`;
+    } finally {
+      setLoggingOut(false);
+    }
   };
 
   const dispatch = useDispatch<AppDispatch>();
@@ -183,9 +206,10 @@ export default function Navbar() {
                   <Button
                     variant="outline"
                     className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
+                    disabled={loggingOut}
                     onClick={handleLogout}
                   >
-                    Log Out
+                    {loggingOut ? "Logging Out..." : "Log Out"}
                   </Button>
                 </>
               )}

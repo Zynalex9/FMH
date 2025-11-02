@@ -1,3 +1,5 @@
+import { IUser } from "@/store/AuthSlice";
+
 export enum Role {
   RECIPIENT = "recipient",
   ADMIN = "admin",
@@ -39,4 +41,5 @@ export interface IRequest {
   request_title: string | null;
   created_at: string;
   updated_at: string;
+  assigned_user: IUser | null;
 }

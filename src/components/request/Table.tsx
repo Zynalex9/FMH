@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllRequests } from "@/hook/request/useGetAllRequests";
-import { IRequest } from "@/types/types";
+import AssignVolunteerDialog from "./AssignVolunteerDialog";
 
 // 🎨 Helper for status color badges
 const getStatusColor = (status: string) => {
@@ -86,7 +86,7 @@ export default function RequestsPage() {
   const handleRowClick = (id: string) => {
     router.push(`/${locale}/requests/${id}`);
   };
-
+  console.log("Filtered Data:", filteredData);
   return (
     <main className="min-h-screen bg-cbg p-6">
       <div className="w-full md:max-w-7xl mx-auto">
@@ -172,6 +172,7 @@ export default function RequestsPage() {
                     <TableHead className="text-cgreen">Zone</TableHead>
                     <TableHead className="text-cgreen">Source</TableHead>
                     <TableHead className="text-cgreen">Status</TableHead>
+                    <TableHead className="text-cgreen">Assigned</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -201,6 +202,29 @@ export default function RequestsPage() {
                         >
                           {request.status}
                         </span>
+                      </TableCell>
+                      <TableCell>
+                        {request.assigned_user ? (
+                          <span
+                            className="text-cgreen font-medium"
+                            title={
+                              // show full value on hover
+                              request.assigned_user.full_name ||
+                              request.assigned_user.email ||
+                              request.assigned_user.phone ||
+                              "Unknown"
+                            }
+                          >
+                            {(
+                              request.assigned_user.full_name ||
+                              request.assigned_user.email ||
+                              request.assigned_user.phone ||
+                              "Unknown"
+                            ).slice(0, 5) + "..."}
+                          </span>
+                        ) : (
+                          <AssignVolunteerDialog requestId={request.id} />
+                        )}
                       </TableCell>
                     </TableRow>
                   ))}
