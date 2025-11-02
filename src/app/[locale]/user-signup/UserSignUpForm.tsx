@@ -56,7 +56,7 @@ export default function UserSignUpForm() {
 
       const { error } = signUpResponse;
       if (error) {
-        toast.error(error.message);
+        toast.error("Error submitting form", error.message);
         console.error("Signup error:", error);
         return;
       }
@@ -86,7 +86,6 @@ export default function UserSignUpForm() {
             placeholder="Full Name"
             className="w-full bg-sgreen text-black rounded-lg p-2 focus:outline-0"
           />
-
           <input
             {...register("contact_info", {
               required: "Email or phone is required",

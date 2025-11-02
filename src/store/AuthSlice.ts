@@ -1,18 +1,32 @@
 import { supabase } from "@/lib/supabaseClient";
-import { Role } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface IUser {
   id: string;
   email: string;
-  phone: string;
   full_name?: string;
-  role: Role;
-  zone: string;
-  is_active: boolean;
-  created_at?: string;
-  updated_at?: string;
+  role?: string;
+  is_active?: boolean;
+  phone?: string;
+  email_verified?: boolean;
+  phone_verified?: boolean;
+  skills?: string;
+  availability?: string;
+  metadata?: {
+    email?: string;
+    email_verified?: boolean;
+    phone?: string;
+    phone_verified?: boolean;
+    full_name?: string;
+    role?: string;
+    skills?: string;
+    availability?: string;
+    is_active?: boolean;
+    [key: string]: any;
+  };
 }
+
+
 interface InitialState {
   user: IUser | null;
   isLoading: boolean;
@@ -24,26 +38,33 @@ const initialState: InitialState = {
   isLoading: false,
   error: null,
 };
+
+/**
+ * ✅ Get user info directly from Supabase session
+ * No DB fetch — all data comes from `auth.session.user`
+ */
 export const getUser = createAsyncThunk<IUser | null>(
   "user/getUser",
   async () => {
     const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-    if (authError) throw authError;
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
 
-    if (user) {
-      const { data: profile, error } = await supabase.from("users")
-        .select("*")
-        .eq("id", user.id)
-        .single();
+    if (error) throw error;
+    if (!session) return null; // no logged-in user
 
-      if (error) throw error;
-      return profile as IUser;
-    }
+    const user = session.user;
 
-    return null;
+    // Extract what you need from the session user object
+    return {
+      id: user.id,
+      email: user.email!,
+      full_name: user.user_metadata?.full_name || "",
+      role: user.user_metadata?.role || "user",
+      is_active: user.user_metadata?.is_active ?? true,
+      metadata: user.user_metadata,
+    } as IUser;
   }
 );
 
@@ -58,18 +79,19 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUser.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    });
-    builder.addCase(getUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.user = action.payload;
-    });
-    builder.addCase(getUser.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message || "Failed to fetch user";
-    });
+    builder
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "Failed to fetch session";
+      });
   },
 });
 

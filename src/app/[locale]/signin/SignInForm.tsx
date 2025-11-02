@@ -17,47 +17,62 @@ export default function SignInForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>();
 
-  const onSubmit = async (data: FormData) => {
-    const input = data.emailOrPhone.trim();
+const onSubmit = async (data: FormData) => {
+  const input = data.emailOrPhone.trim();
+  const isEmail = /\S+@\S+\.\S+/.test(input);
+  const isPhone = /^[0-9+\-()\s]*$/.test(input);
 
-    const isEmail = /\S+@\S+\.\S+/.test(input);
-    const isPhone = /^[0-9+\-()\s]*$/.test(input);
+  if (!isEmail && !isPhone) {
+    toast.error("Please enter a valid email or phone number.");
+    return;
+  }
 
-    if (!isEmail && !isPhone) {
-      toast.error("Please enter a valid email or phone number.");
+  try {
+    let response;
+    if (isEmail) {
+      response = await supabase.auth.signInWithPassword({
+        email: input,
+        password: data.password,
+      });
+    } else {
+      response = await supabase.auth.signInWithPassword({
+        phone: input,
+        password: data.password,
+      });
+    }
+
+    const { data: authData, error } = response;
+
+    if (error) {
+      toast.error(error.message || "Sign-in failed");
       return;
     }
 
-    try {
-      let response;
+    // CRITICAL: Set the session in cookies for server-side (middleware, SSR)
+    const { error: setSessionError } = await fetch("/api/auth/set-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_token: authData.session.access_token,
+        refresh_token: authData.session.refresh_token,
+      }),
+    }).then(res => res.json());
 
-      if (isEmail) {
-        response = await supabase.auth.signInWithPassword({
-          email: input,
-          password: data.password,
-        });
-      } else {
-        response = await supabase.auth.signInWithPassword({
-          phone: input,
-          password: data.password,
-        });
-      }
-
-      const { error, data: userData } = response;
-
-      if (error) {
-        console.error("Sign-in error:", error);
-        toast.error(error.message || "Sign-in failed");
-        return;
-      }
-
-      console.log("User signed in:", userData);
-      toast.success("Signed in successfully ✅");
-    } catch (error) {
-      console.error("Unexpected sign-in error:", error);
-      toast.error("Something went wrong. Please try again.");
+    if (setSessionError) {
+      console.error("Failed to set session cookie:", setSessionError);
+      toast.error("Login failed: session sync error");
+      return;
     }
-  };
+
+    toast.success("Signed in successfully ✅");
+    
+    // Redirect to protected route
+    window.location.href = "/en/request";
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    toast.error("Something went wrong.");
+  }
+};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">

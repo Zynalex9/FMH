@@ -7,12 +7,6 @@ import { useDispatch } from "react-redux";
 
 export default function Banner() {
   const t = useTranslations("HomePage");
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    (async () => {
-      await dispatch(getUser());
-    })();
-  }, [dispatch]);
 
   return (
     <div
