@@ -74,7 +74,7 @@ export default function AssignVolunteerDialog({
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-sgreen text-black hover:bg-sgreen/90"
+          className="bg-sgreen text-cgreen hover:bg-sgreen/90 border-0"
           onClick={(e:any) => e.stopPropagation()}
         >
           Assign
@@ -89,9 +89,10 @@ export default function AssignVolunteerDialog({
           <Input
             placeholder="Search volunteer by name..."
             value={searchTerm}
+            className="border-0 focus:outline-0"
             onChange={(e: any) => setSearchTerm(e.target.value)}
           />
-          <ScrollArea className="max-h-64 border rounded-md p-2">
+          <ScrollArea className="max-h-64 rounded-md p-2">
             {loading ? (
               <p className="text-sm text-gray-500">Loading volunteers...</p>
             ) : volunteers.length === 0 ? (
@@ -101,19 +102,19 @@ export default function AssignVolunteerDialog({
                 {volunteers.map((v) => (
                   <li
                     key={v.id}
-                    className="p-2 border rounded-md hover:bg-sgreen/40 flex justify-between items-center"
+                    className="p-2 rounded-md hover:bg-sgreen/40 flex justify-between items-center"
                   >
                     <div>
                       <p className="font-medium text-black">{v.full_name}</p>
-                      <p className="text-sm text-gray-600">{v.email}</p>
+                      <p className="text-sm text-cgreen">{v.email}</p>
                       {v.phone && (
-                        <p className="text-sm text-gray-500">{v.phone}</p>
+                        <p className="text-sm text-cgreen">{v.phone}</p>
                       )}
                     </div>
                     <Button
                       size="sm"
                       onClick={() => handleAssign(v.id)}
-                      className="bg-sgreen hover:bg-sgreen/90 text-black"
+                      className="bg-sgreen hover:bg-sgreen/90 text-cgreen"
                     >
                       Assign
                     </Button>

@@ -1,16 +1,23 @@
 "use client";
-import { formatDistanceToNow } from "date-fns";
 import { useState, useEffect } from "react";
-import { Phone, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useGetRequest } from "@/hook/request/useGetSingleRequest";
+import { HeaderSection } from "../Single/HeaderSection";
+import { StatusSection } from "../Single/StatusSection";
+import { RecipientSection } from "../Single/RecipientSection";
+import { UploadSection } from "../Single/UploadSection";
+import { AdditionalInfoSection } from "../Single/Info";
+import { NotesSection } from "../Single/NotesSection";
+import { useUpdateRequest } from "@/hook/request/useUpdateRequest";
+import { toast } from "sonner";
 
-export function RequestDetail() {
+interface RequestDetailProps {}
+
+export function RequestDetail({}: RequestDetailProps) {
   const [status, setStatus] = useState("");
   const [notes, setNotes] = useState("");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const { locale, requestId } = useParams();
 
   const {
@@ -18,117 +25,39 @@ export function RequestDetail() {
     isLoading,
     error,
   } = useGetRequest(requestId as string);
+
   useEffect(() => {
-    if (request?.status) {
-      setStatus(request.status);
-    }
+    if (request?.status) setStatus(request.status);
+    if (request?.notes) setNotes(request.notes);
   }, [request]);
-
-  const statuses = [
-    { id: "requested", label: "Requested" },
-    { id: "picked-up", label: "Picked Up" },
-    { id: "en-route", label: "En Route" },
-    { id: "delivered", label: "Delivered" },
-  ];
-
-  const updatedAt = request?.updated_at;
+  const updateRequest = useUpdateRequest(status, notes, requestId as string);
 
   if (isLoading) return <div className="text-center py-10">Loading...</div>;
-  if (error) return <div className="text-center text-red-500">Error loading request</div>;
-
+  if (error)
+    return (
+      <div className="text-center text-red-500">Error loading request</div>
+    );
+  const handleUpdate = async () => {
+    if(!request) return;
+    if(status === request.status && notes === request.notes) {
+      toast.info("No changes to update");
+      return;
+    }
+    updateRequest.mutate(); 
+  };
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-cbg">
-      <div className="mb-8">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-          <Link
-            href={`/${locale}/request`}
-            className="text-cgreen hover:underline"
-          >
-            Requests
-          </Link>
-          <span>/</span>
-          <span>Request #{request?.request_number}</span>
-        </div>
-
-        <h1 className="text-3xl font-bold mb-1">{request?.request_number}</h1>
-        <p className="text-sm text-cgreen">
-          {updatedAt
-            ? `Updated ${formatDistanceToNow(new Date(updatedAt), {
-                addSuffix: true,
-              })}`
-            : "Just now"}
-        </p>
-      </div>
-
-      {/* Status Section */}
-      <h2 className="text-lg font-semibold mb-4">Status</h2>
-      <div className="space-y-3 mb-8">
-        {statuses.map((s) => (
-          <label
-            key={s.id}
-            className={`flex items-center justify-between w-full px-4 py-3 rounded-lg shadow-sm border transition-all cursor-pointer ${
-              status === s.id
-                ? "border-cgreen bg-cbg"
-                : "border-border bg-cbg hover:shadow-md"
-            }`}
-          >
-            <span className="text-sm font-medium">{s.label}</span>
-            <span
-              className={`w-5 h-5 flex items-center justify-center rounded-full border transition-all ${
-                status === s.id
-                  ? "bg-cgreen border-cgreen"
-                  : "border-gray-300 bg-white"
-              }`}
-            >
-              {status === s.id && (
-                <span className="w-2 h-2 bg-white rounded-full" />
-              )}
-            </span>
-            <input
-              type="radio"
-              name="status"
-              value={s.id}
-              checked={status === s.id}
-              onChange={(e) => setStatus(e.target.value)}
-              className="hidden"
-            />
-          </label>
-        ))}
-      </div>
-
-      {/* Recipient Section */}
-      <h2 className="text-lg font-semibold mb-4">Recipient</h2>
-      <div className="flex items-center justify-between my-4">
-        <div className="flex items-center gap-3">
-          <Avatar>
-            <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia" />
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-medium">{request?.contact_name || "N/A"}</p>
-            <p className="text-sm text-cgreen">
-              {request?.contact_location || "Address not provided"}
-            </p>
-          </div>
-        </div>
-        <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-          <Phone className="w-5 h-5 text-cgreen" />
-        </button>
-      </div>
-
-      {/* Notes Section */}
-      <div className="bg-cbg my-10">
-        <label className="text-sm font-medium mb-2 block">Add Notes</label>
-        <textarea
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          placeholder="Add any additional notes..."
-          className="w-full bg-cbg min-h-24 px-3 py-2 border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-cgreen"
-        />
-      </div>
-
+    <div className="max-w-5xl mx-auto p-6 bg-cbg space-y-8">
+      <HeaderSection request={request} locale={locale as string} />
+      <StatusSection status={status} setStatus={setStatus} />
+      <RecipientSection request={request} />
+      <UploadSection
+        uploadedFiles={uploadedFiles}
+        setUploadedFiles={setUploadedFiles}
+      />
+      <NotesSection notes={notes} setNotes={setNotes} />
+      <AdditionalInfoSection request={request} />
       <div className="flex justify-end">
-        <Button className="bg-cgreen hover:bg-cgreen/90 text-white">
+        <Button onClick={handleUpdate} className="bg-cgreen hover:bg-cgreen/90 text-white">
           Update Status
         </Button>
       </div>
