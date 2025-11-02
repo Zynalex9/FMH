@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useCreateSupportOffer } from "@/hook/useCreateSupportOffer";
-import { request } from "http";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 type SupportOfferForm = {
   full_name: string;
@@ -31,7 +32,7 @@ export default function SupportOfferPage() {
   const { mutateAsync } = useCreateSupportOffer();
   const selectedDonationType = watch("donation_type");
   const donationTypeOther = watch("donationTypeOther");
-
+  const { user } = useSelector((state: RootState) => state.user);
   useEffect(() => {
     setIsOnline(navigator.onLine);
     const handleOnline = () => setIsOnline(true);
@@ -44,26 +45,26 @@ export default function SupportOfferPage() {
     };
   }, []);
 
-const onSubmit = async (
-  data: SupportOfferForm & { donationTypeOther?: string }
-) => {
-  const { donationTypeOther, ...rest } = data;
-  const requestData = {
-    ...rest,
-    donation_type:
-      data.donation_type === "other" && donationTypeOther
-        ? donationTypeOther
-        : data.donation_type,
+  const onSubmit = async (
+    data: SupportOfferForm & { donationTypeOther?: string }
+  ) => {
+    const { donationTypeOther, ...rest } = data;
+    const requestData = {
+      ...rest,
+      created_by: user?.id || null,
+      donation_type:
+        data.donation_type === "other" && donationTypeOther
+          ? donationTypeOther
+          : data.donation_type,
+    };
+
+    try {
+      await mutateAsync(requestData);
+      reset();
+    } catch (error) {
+      console.error("Error submitting:", error);
+    }
   };
-
-  try {
-    await mutateAsync(requestData); 
-    reset(); 
-  } catch (error) {
-    console.error("Error submitting:", error);
-  }
-};
-
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-cbg pt-16 p-4">

@@ -43,3 +43,18 @@ export interface IRequest {
   updated_at: string;
   assigned_user: IUser | null;
 }
+
+export interface ISupportOffer {
+  id: string;
+  full_name: string;
+  contact_information: string;
+  donation_type: string;
+  availability: string;
+  created_at: string; 
+  for_events: boolean;
+  for_outreachs: boolean;
+  created_by: string | null; 
+}
+export interface ISupportOfferWithUser extends Omit<ISupportOffer, "created_by"> {
+  created_by?: IUser | null; 
+}

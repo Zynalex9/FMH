@@ -16,6 +16,13 @@ export const RequestHeader: React.FC<RequestHeaderProps> = ({
   const { user } = useSelector((state: RootState) => state.user);
   const isAdmin = user?.role === "admin";
 
+  // Tabs config
+  const tabs = [
+    { id: "all-requests", label: "All Requests" },
+    { id: "quick-entry", label: "Quick Entry" },
+    { id: "support-offers", label: "Support Offers" },
+  ];
+
   return (
     <div className="mb-6">
       <div className="text-center sm:text-left">
@@ -28,28 +35,22 @@ export const RequestHeader: React.FC<RequestHeaderProps> = ({
             : "You can request for help in the given form."}
         </p>
       </div>
+
       <div className="mt-4 border-b border-gray-200 overflow-x-auto">
         <div className="flex gap-6 sm:gap-8 min-w-max px-2 sm:px-0">
-          <button
-            onClick={() => setTabState("all-requests")}
-            className={`pb-2 text-sm sm:text-base font-medium transition-colors ${
-              tabState === "all-requests"
-                ? "text-cgreen border-b-2 border-cgreen"
-                : "text-gray-500 hover:text-cgreen"
-            }`}
-          >
-            All Requests
-          </button>
-          <button
-            onClick={() => setTabState("quick-entry")}
-            className={`pb-2 text-sm sm:text-base font-medium transition-colors ${
-              tabState === "quick-entry"
-                ? "text-cgreen border-b-2 border-cgreen"
-                : "text-gray-500 hover:text-cgreen"
-            }`}
-          >
-            Quick Entry
-          </button>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setTabState(tab.id)}
+              className={`pb-2 text-sm sm:text-base font-medium transition-colors ${
+                tabState === tab.id
+                  ? "text-cgreen border-b-2 border-cgreen"
+                  : "text-gray-500 hover:text-cgreen"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
