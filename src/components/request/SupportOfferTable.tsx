@@ -20,7 +20,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { capitalizeWords } from "@/lib/helper";
 import { useGetAllSupportOffers } from "@/hook/support/useGetAllSupportOffers";
 import { ISupportOffer } from "@/types/types";
-import { filterSupportOffers, getDonationTypes } from "@/lib/utils";
+import { filterSupportOffers, getDonationTypes } from "@/lib/helper";
 
 const FIXED_DONATION_TYPES = [
   "Money",
