@@ -1,10 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAssignedRequests } from "@/hook/useGetAssignedRequests";
+import { useTranslations } from "next-intl";
 
 const getStatusColor = (status: string) => {
   switch (status?.toLowerCase()) {
@@ -32,13 +32,12 @@ const getStatusColor = (status: string) => {
 };
 
 export default function VolunteerDashboard() {
+  const t = useTranslations("VolunteerDashboard");
   const { locale } = useParams();
   const router = useRouter();
   const { user } = useSelector((state: RootState) => state.user);
 
-  console.log(user?.id)
   const { data: requests, isLoading, error } = useGetAssignedRequests(user?.id);
-
   const assignedRequests = useMemo(() => requests ?? [], [requests]);
 
   const handleRowClick = (id: string) => {
@@ -49,12 +48,12 @@ export default function VolunteerDashboard() {
     <main className="min-h-screen bg-cbg p-6">
       <div className="w-full md:max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-black">Volunteer Dashboard</h1>
+          <h1 className="text-3xl font-bold text-black">{t("title")}</h1>
           <Button
             onClick={() => router.push(`/${locale}/profile`)}
             className="bg-cgreen hover:bg-cgreen/90"
           >
-            My Profile
+            {t("myProfile")}
           </Button>
         </div>
 
@@ -72,15 +71,15 @@ export default function VolunteerDashboard() {
           </div>
         ) : error ? (
           <div className="p-6 text-red-600">
-            Error fetching requests: {error.message}
+            {t("error", { message: error.message })}
           </div>
         ) : assignedRequests.length === 0 ? (
           <div className="border rounded-lg bg-white text-center py-16">
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
-              No Requests Assigned
+              {t("noRequests")}
             </h2>
             <p className="text-gray-500">
-              Once you are assigned to a request, it will appear here.
+              {t("noRequestsDesc")}
             </p>
           </div>
         ) : (
@@ -88,11 +87,11 @@ export default function VolunteerDashboard() {
             <Table>
               <TableHeader className="bg-cbg border-0">
                 <TableRow className="border-0">
-                  <TableHead className="text-black">Request #</TableHead>
-                  <TableHead className="text-cgreen">Need Type</TableHead>
-                  <TableHead className="text-cgreen">Zone</TableHead>
-                  <TableHead className="text-cgreen">Source</TableHead>
-                  <TableHead className="text-cgreen">Status</TableHead>
+                  <TableHead className="text-black">{t("table.requestNumber")}</TableHead>
+                  <TableHead className="text-cgreen">{t("table.needType")}</TableHead>
+                  <TableHead className="text-cgreen">{t("table.zone")}</TableHead>
+                  <TableHead className="text-cgreen">{t("table.source")}</TableHead>
+                  <TableHead className="text-cgreen">{t("table.status")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

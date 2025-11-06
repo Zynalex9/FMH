@@ -1,4 +1,19 @@
 {
+  "Navbar": {
+    "logo": "FMH",
+    "about": "À propos",
+    "services": "Services",
+    "signUp": "S'inscrire",
+    "logIn": "Se connecter",
+    "adminDashboard": "Tableau de bord Admin",
+    "volunteerDashboard": "Tableau de bord Bénévole",
+    "logOut": "Déconnexion",
+    "loggingOut": "Déconnexion en cours...",
+    "toast": {
+      "logoutSuccess": "Déconnexion réussie !",
+      "logoutError": "Échec de la déconnexion."
+    }
+  },
   "HomePage": {
     "title": "Connecter les Voisins, Renforcer les Communautés",
     "sub-banner-text": "Nous sommes là pour vous aider. Que vous ayez besoin d’aide ou que vous souhaitiez contribuer, nous construisons ensemble une communauté plus forte.",
@@ -25,6 +40,24 @@
     "terms-of-service": "Conditions d’Utilisation",
     "footer": "©2024 Community Connect. Tous droits réservés."
   },
+  "SignInForm": {
+    "title": "Connexion",
+    "emailOrPhonePlaceholder": "Email ou Téléphone",
+    "passwordPlaceholder": "Mot de passe",
+    "submitButton": "Se connecter",
+    "submittingButton": "Connexion en cours...",
+    "signupPrompt": "Nouveau sur FMH ? {link}",
+    "signupLink": "S'inscrire",
+    "errors": {
+      "emailOrPhoneRequired": "Veuillez saisir votre email ou numéro de téléphone",
+      "passwordRequired": "Le mot de passe est requis",
+      "invalidInput": "Veuillez saisir un email ou téléphone valide.",
+      "signInFailed": "Échec de la connexion",
+      "sessionError": "Échec de connexion : erreur de synchronisation",
+      "unexpectedError": "Quelque chose a mal tourné."
+    },
+    "success": "Connecté avec succès"
+  },
   "SignUp": {
     "title": "Créez votre compte",
     "sub-title": "Rejoignez notre communauté — cela ne prend qu'une minute !",
@@ -37,6 +70,24 @@
     "submit": "S'inscrire",
     "success": "Compte créé avec succès !",
     "error": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "UserSignUpForm": {
+    "title": "Créez votre compte",
+    "subtitle": "Rejoignez notre plateforme et commencez",
+    "fullName": "Nom complet",
+    "contactInfo": "Email ou Téléphone",
+    "zone": "Zone (optionnel)",
+    "password": "Mot de passe",
+    "submitButton": "S'inscrire",
+    "submittingButton": "Création en cours...",
+    "success": "Compte créé avec succès !",
+    "errors": {
+      "fullNameRequired": "Le nom complet est requis",
+      "contactRequired": "Email ou téléphone est requis",
+      "passwordRequired": "Le mot de passe est requis",
+      "submitError": "Erreur lors de l'envoi du formulaire",
+      "unexpectedError": "Une erreur est survenue. Veuillez réessayer."
+    }
   },
   "RequestForm": {
     "request-title": "Titre de la demande",
@@ -221,6 +272,127 @@
       "description": "Que vous souhaitiez être bénévole, faire un don ou sensibiliser — chaque action renforce nos communautés.",
       "volunteer": "Bénévoler",
       "donate": "Faire un don"
+    }
+  },
+  "UnauthorizedPage": {
+    "title": "Accès Refusé",
+    "description": "Vous n’avez pas la permission de voir cette page. Si vous pensez qu’il s’agit d’une erreur, veuillez contacter votre administrateur.",
+    "goHome": "Retour à l’accueil",
+    "signIn": "Se connecter"
+  },
+  "all_requests": {
+    "title": "Demandes",
+    "filters": {
+      "needType": "Type de besoin",
+      "status": "Statut",
+      "zone": "Zone",
+      "source": "Source",
+      "all": "Tous"
+    },
+    "needTypes": {
+      "food": "Aide alimentaire",
+      "clothing": "Vêtements",
+      "shelter": "Abri",
+      "medical": "Fournitures médicales"
+    },
+    "statuses": {
+      "requested": "Demandé",
+      "pickedUp": "Récupéré",
+      "enRoute": "En route",
+      "delivered": "Livré"
+    },
+    "zones": {
+      "a": "Zone A",
+      "b": "Zone B",
+      "c": "Zone C"
+    },
+    "sources": {
+      "referral": "Référence",
+      "walkIn": "Présentiel",
+      "online": "En ligne"
+    },
+    "table": {
+      "requestNumber": "Demande #",
+      "needType": "Type de besoin",
+      "zone": "Zone",
+      "source": "Source",
+      "status": "Statut",
+      "assigned": "Attribué"
+    },
+    "errors": {
+      "fetch": "Erreur lors de la récupération des demandes"
+    },
+    "empty": "Aucune demande ne correspond à vos filtres.",
+    "unknown": "Inconnu"
+  },
+  "RequestHeader": {
+    "title": "Demandes",
+    "adminSubtitle": "Gérez et suivez les demandes de sensibilisation communautaire.",
+    "userSubtitle": "Vous pouvez demander de l'aide via le formulaire fourni.",
+    "tabs": {
+      "allRequests": "Toutes les Demandes",
+      "quickEntry": "Entrée Rapide",
+      "supportOffers": "Offres de Soutien"
+    }
+  },
+  "AssignVolunteerDialog": {
+    "title": "Attribuer la demande à un bénévole",
+    "searchPlaceholder": "Rechercher un bénévole par nom, email ou téléphone…",
+    "loading": "Chargement des bénévoles…",
+    "noVolunteers": "Aucun bénévole trouvé.",
+    "assignButton": "Attribuer",
+    "successToast": "Demande attribuée avec succès",
+    "errorToast": "Échec de l'attribution de la demande"
+  },
+  "RequestDetail": {
+    "loading": "Chargement...",
+    "error": "Erreur lors du chargement de la demande",
+    "noChanges": "Aucun changement à mettre à jour",
+    "updateStatus": "Mettre à jour le statut",
+    "HeaderSection": {
+      "requests": "Demandes",
+      "requestNumber": "Demande #{{requestNumber}}",
+      "updated": "Mis à jour {{timeAgo}}",
+      "justNow": "À l'instant"
+    },
+    "StatusSection": {
+      "title": "Statut",
+      "requested": "Demandée",
+      "pickedUp": "Récupérée",
+      "enRoute": "En route",
+      "delivered": "Livrée"
+    },
+    "RecipientSection": {
+      "title": "Destinataire",
+      "addressNotProvided": "Adresse non fournie",
+      "call": "Appeler"
+    },
+    "UploadSection": {
+      "uploadPhoto": "Télécharger une photo"
+    },
+    "NotesSection": {
+      "addNotes": "Ajouter des notes",
+      "placeholder": "Ajoutez toutes notes supplémentaires..."
+    },
+    "AdditionalInfoSection": {
+      "zone": "Zone",
+      "priority": "Priorité",
+      "additionalNotes": "Notes supplémentaires",
+      "na": "N/A"
+    }
+  },
+  "VolunteerDashboard": {
+    "title": "Tableau de bord Bénévole",
+    "myProfile": "Mon Profil",
+    "noRequests": "Aucune demande assignée",
+    "noRequestsDesc": "Dès qu’une demande vous sera attribuée, elle apparaîtra ici.",
+    "error": "Erreur lors du chargement des demandes : {{message}}",
+    "table": {
+      "requestNumber": "Demande #",
+      "needType": "Type de besoin",
+      "zone": "Zone",
+      "source": "Source",
+      "status": "Statut"
     }
   }
 }

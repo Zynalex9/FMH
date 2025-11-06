@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
 import { useGetRequest } from "@/hook/request/useGetSingleRequest";
@@ -15,6 +16,7 @@ import { toast } from "sonner";
 interface RequestDetailProps {}
 
 export function RequestDetail({}: RequestDetailProps) {
+  const t = useTranslations("RequestDetail");
   const [status, setStatus] = useState("");
   const [notes, setNotes] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -30,21 +32,24 @@ export function RequestDetail({}: RequestDetailProps) {
     if (request?.status) setStatus(request.status);
     if (request?.notes) setNotes(request.notes);
   }, [request]);
+
   const updateRequest = useUpdateRequest(status, notes, requestId as string);
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <div className="text-center py-10">{t("loading")}</div>;
   if (error)
     return (
-      <div className="text-center text-red-500">Error loading request</div>
+      <div className="text-center text-red-500">{t("error")}</div>
     );
+
   const handleUpdate = async () => {
     if(!request) return;
     if(status === request.status && notes === request.notes) {
-      toast.info("No changes to update");
+      toast.info(t("noChanges"));
       return;
     }
     updateRequest.mutate(); 
   };
+
   return (
     <div className="max-w-5xl mx-auto p-6 bg-cbg space-y-8">
       <HeaderSection request={request} locale={locale as string} />
@@ -58,7 +63,7 @@ export function RequestDetail({}: RequestDetailProps) {
       <AdditionalInfoSection request={request} />
       <div className="flex justify-end">
         <Button onClick={handleUpdate} className="bg-cgreen hover:bg-cgreen/90 text-white">
-          Update Status
+          {t("updateStatus")}
         </Button>
       </div>
     </div>

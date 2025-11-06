@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabaseClient";
 import { debounce } from "lodash";
 import {
@@ -27,6 +28,7 @@ export default function AssignVolunteerDialog({
 }: {
   requestId: string;
 }) {
+  const t = useTranslations("AssignVolunteerDialog");
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
@@ -44,7 +46,11 @@ export default function AssignVolunteerDialog({
         )
         .eq("role", "volunteer");
 
-      if (!error) setVolunteers(data || []);
+      if (!error && data) {
+        setVolunteers(data);
+      } else {
+        setVolunteers([]);
+      }
       setLoading(false);
     }, 500),
     []
@@ -62,9 +68,9 @@ export default function AssignVolunteerDialog({
       .eq("id", requestId);
 
     if (error) {
-      toast.error("Failed to assign request");
+      toast.error(t("errorToast"));
     } else {
-      toast.success("Request assigned successfully ✅");
+      toast.success(t("successToast"));
       setOpen(false);
     }
   };
@@ -75,28 +81,30 @@ export default function AssignVolunteerDialog({
         <Button
           variant="outline"
           className="bg-sgreen text-cgreen hover:bg-sgreen/90 border-0"
-          onClick={(e:any) => e.stopPropagation()}
+          onClick={(e: any) => e.stopPropagation()}
         >
-          Assign
+          {t("assignButton")}
         </Button>
       </DialogTrigger>
+
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Assign Request to Volunteer</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
 
         <div className="mt-4 space-y-4">
           <Input
-            placeholder="Search volunteer by name..."
+            placeholder={t("searchPlaceholder")}
             value={searchTerm}
             className="border-0 focus:outline-0"
-            onChange={(e: any) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+
           <ScrollArea className="max-h-64 rounded-md p-2">
             {loading ? (
-              <p className="text-sm text-gray-500">Loading volunteers...</p>
+              <p className="text-sm text-gray-500">{t("loading")}</p>
             ) : volunteers.length === 0 ? (
-              <p className="text-sm text-gray-500">No volunteers found.</p>
+              <p className="text-sm text-gray-500">{t("noVolunteers")}</p>
             ) : (
               <ul className="space-y-2">
                 {volunteers.map((v) => (
@@ -116,7 +124,7 @@ export default function AssignVolunteerDialog({
                       onClick={() => handleAssign(v.id)}
                       className="bg-sgreen hover:bg-sgreen/90 text-cgreen"
                     >
-                      Assign
+                      {t("assignButton")}
                     </Button>
                   </li>
                 ))}

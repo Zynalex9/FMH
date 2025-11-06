@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { useTranslations } from "next-intl";
 
 export function StatusSection({
   status,
@@ -7,16 +8,18 @@ export function StatusSection({
   status: string;
   setStatus: Dispatch<SetStateAction<string>>;
 }) {
+  const t = useTranslations("RequestDetail.StatusSection");
+  
   const statuses = [
-    { id: "requested", label: "Requested" },
-    { id: "picked_up", label: "Picked Up" },
-    { id: "en_route", label: "En Route" },
-    { id: "delivered", label: "Delivered" },
+    { id: "requested", label: t("requested") },
+    { id: "picked_up", label: t("pickedUp") },
+    { id: "en_route", label: t("enRoute") },
+    { id: "delivered", label: t("delivered") },
   ];
 
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-4">Status</h2>
+      <h2 className="text-lg font-semibold mb-4">{t("title")}</h2>
       <div className="space-y-3 mb-8">
         {statuses.map((s) => (
           <label

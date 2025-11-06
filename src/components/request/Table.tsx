@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,20 +34,28 @@ const getStatusColor = (status: string) => {
   }
 };
 
-// 🧱 Filters
-const NEED_TYPES = [
-  "Food Assistance",
-  "Clothing",
-  "Shelter",
-  "Medical Supplies",
-];
-const STATUSES = ["Requested", "Picked Up", "En Route", "Delivered"];
-const ZONES = ["Zone A", "Zone B", "Zone C"];
-const SOURCES = ["Referral", "Walk-in", "Online"];
-
 export default function RequestsPage() {
   const { locale } = useParams();
   const router = useRouter();
+  const t = useTranslations("all_requests");
+  const NEED_TYPES = [
+    t("needTypes.food"),
+    t("needTypes.clothing"),
+    t("needTypes.shelter"),
+    t("needTypes.medical"),
+  ];
+  const STATUSES = [
+    t("statuses.requested"),
+    t("statuses.pickedUp"),
+    t("statuses.enRoute"),
+    t("statuses.delivered"),
+  ];
+  const ZONES = [t("zones.a"), t("zones.b"), t("zones.c")];
+  const SOURCES = [
+    t("sources.referral"),
+    t("sources.walkIn"),
+    t("sources.online"),
+  ];
 
   const [selectedNeedType, setSelectedNeedType] = useState<string | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
@@ -84,36 +93,39 @@ export default function RequestsPage() {
     selectedZone,
     selectedSource,
   ]);
+
   const handleRowClick = (id: string) => {
     router.push(`/${locale}/requests/${id}`);
   };
-  console.log("Filtered Data:", filteredData);
+
   return (
     <main className="min-h-screen bg-cbg p-6">
       <div className="w-full md:max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-black">Requests</h1>
+        <h1 className="text-3xl font-bold mb-8 text-black">{t("title")}</h1>
+
+        {/* 🧭 Filters */}
         <div className="flex gap-4 mb-8 flex-wrap">
           {[
             {
-              label: "Need Type",
+              label: t("filters.needType"),
               options: NEED_TYPES,
               value: selectedNeedType,
               setValue: setSelectedNeedType,
             },
             {
-              label: "Status",
+              label: t("filters.status"),
               options: STATUSES,
               value: selectedStatus,
               setValue: setSelectedStatus,
             },
             {
-              label: "Zone",
+              label: t("filters.zone"),
               options: ZONES,
               value: selectedZone,
               setValue: setSelectedZone,
             },
             {
-              label: "Source",
+              label: t("filters.source"),
               options: SOURCES,
               value: selectedSource,
               setValue: setSelectedSource,
@@ -131,7 +143,7 @@ export default function RequestsPage() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem onClick={() => setValue(null)}>
-                  All
+                  {t("filters.all")}
                 </DropdownMenuItem>
                 {options.map((opt) => (
                   <DropdownMenuItem
@@ -146,6 +158,8 @@ export default function RequestsPage() {
             </DropdownMenu>
           ))}
         </div>
+
+        {/* 🧱 Table */}
         <div className="border rounded-lg overflow-hidden bg-cbg">
           {isLoading ? (
             <div className="p-6 space-y-3">
@@ -161,21 +175,34 @@ export default function RequestsPage() {
             </div>
           ) : error ? (
             <div className="p-6 text-red-600">
-              Error fetching requests: {error.message}
+              {t("errors.fetch")}: {error.message}
             </div>
           ) : (
             <>
               <Table>
                 <TableHeader className="bg-cbg border-0">
                   <TableRow className="border-0">
-                    <TableHead className="text-black">Request #</TableHead>
-                    <TableHead className="text-cgreen">Need Type</TableHead>
-                    <TableHead className="text-cgreen">Zone</TableHead>
-                    <TableHead className="text-cgreen">Source</TableHead>
-                    <TableHead className="text-cgreen">Status</TableHead>
-                    <TableHead className="text-cgreen">Assigned</TableHead>
+                    <TableHead className="text-black">
+                      {t("table.requestNumber")}
+                    </TableHead>
+                    <TableHead className="text-cgreen">
+                      {t("table.needType")}
+                    </TableHead>
+                    <TableHead className="text-cgreen">
+                      {t("table.zone")}
+                    </TableHead>
+                    <TableHead className="text-cgreen">
+                      {t("table.source")}
+                    </TableHead>
+                    <TableHead className="text-cgreen">
+                      {t("table.status")}
+                    </TableHead>
+                    <TableHead className="text-cgreen">
+                      {t("table.assigned")}
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
+
                 <TableBody>
                   {filteredData.map((request) => (
                     <TableRow
@@ -209,18 +236,17 @@ export default function RequestsPage() {
                           <span
                             className="text-cgreen font-medium"
                             title={
-                              // show full value on hover
                               request.assigned_user.full_name ||
                               request.assigned_user.email ||
                               request.assigned_user.phone ||
-                              "Unknown"
+                              t("unknown")
                             }
                           >
                             {capitalizeWords(
                               request.assigned_user.full_name ||
                                 request.assigned_user.email ||
                                 request.assigned_user.phone ||
-                                "Unknown"
+                                t("unknown")
                             ).slice(0, 5) + "..."}
                           </span>
                         ) : (
@@ -234,7 +260,7 @@ export default function RequestsPage() {
 
               {filteredData.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground">
-                  No requests found matching your filters.
+                  {t("empty")}
                 </div>
               )}
             </>

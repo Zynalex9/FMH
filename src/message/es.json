@@ -1,4 +1,19 @@
 {
+  "Navbar": {
+    "logo": "FMH",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "signUp": "Registrarse",
+    "logIn": "Iniciar Sesión",
+    "adminDashboard": "Panel de Admin",
+    "volunteerDashboard": "Panel de Voluntario",
+    "logOut": "Cerrar Sesión",
+    "loggingOut": "Cerrando sesión...",
+    "toast": {
+      "logoutSuccess": "¡Sesión cerrada con éxito!",
+      "logoutError": "Error al cerrar sesión."
+    }
+  },
   "HomePage": {
     "title": "Conectando Vecinos, Fortaleciendo Comunidades",
     "sub-banner-text": "Estamos aquí para ayudar. Ya sea que necesites asistencia o quieras contribuir, juntos estamos construyendo una comunidad más fuerte.",
@@ -25,6 +40,24 @@
     "terms-of-service": "Términos de Servicio",
     "footer": "©2024 Community Connect. Todos los derechos reservados."
   },
+  "SignInForm": {
+    "title": "Iniciar Sesión",
+    "emailOrPhonePlaceholder": "Correo o Teléfono",
+    "passwordPlaceholder": "Contraseña",
+    "submitButton": "Iniciar Sesión",
+    "submittingButton": "Iniciando sesión...",
+    "signupPrompt": "¿Nuevo en FMH? {link}",
+    "signupLink": "Regístrate",
+    "errors": {
+      "emailOrPhoneRequired": "Por favor ingresa tu correo o número de teléfono",
+      "passwordRequired": "La contraseña es requerida",
+      "invalidInput": "Por favor ingresa un correo o teléfono válido.",
+      "signInFailed": "Inicio de sesión fallido",
+      "sessionError": "Error de inicio: problema de sincronización de sesión",
+      "unexpectedError": "Algo salió mal."
+    },
+    "success": "Sesión iniciada con éxito"
+  },
   "SignUp": {
     "title": "Crea tu cuenta",
     "sub-title": "Únete a nuestra comunidad — ¡solo toma un minuto!",
@@ -37,6 +70,24 @@
     "submit": "Registrarse",
     "success": "¡Cuenta creada con éxito!",
     "error": "Algo salió mal. Inténtalo de nuevo."
+  },
+  "UserSignUpForm": {
+    "title": "Crea tu cuenta",
+    "subtitle": "Únete a nuestra plataforma y comienza",
+    "fullName": "Nombre completo",
+    "contactInfo": "Correo o Teléfono",
+    "zone": "Zona (opcional)",
+    "password": "Contraseña",
+    "submitButton": "Registrarse",
+    "submittingButton": "Creando...",
+    "success": "¡Cuenta creada exitosamente!",
+    "errors": {
+      "fullNameRequired": "El nombre completo es obligatorio",
+      "contactRequired": "Correo o teléfono es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria",
+      "submitError": "Error al enviar el formulario",
+      "unexpectedError": "Algo salió mal. Por favor intenta de nuevo."
+    }
   },
   "RequestForm": {
     "request-title": "Título de la solicitud",
@@ -221,6 +272,127 @@
       "description": "Ya sea que quieras ser voluntario, donar o difundir — cada acción fortalece nuestras comunidades.",
       "volunteer": "Ser Voluntario",
       "donate": "Donar"
+    }
+  },
+  "UnauthorizedPage": {
+    "title": "Acceso Denegado",
+    "description": "No tienes permiso para ver esta página. Si crees que es un error, por favor contacta a tu administrador.",
+    "goHome": "Ir al Inicio",
+    "signIn": "Iniciar Sesión"
+  },
+  "all_requests": {
+    "title": "Solicitudes",
+    "filters": {
+      "needType": "Tipo de necesidad",
+      "status": "Estado",
+      "zone": "Zona",
+      "source": "Fuente",
+      "all": "Todos"
+    },
+    "needTypes": {
+      "food": "Asistencia alimentaria",
+      "clothing": "Ropa",
+      "shelter": "Refugio",
+      "medical": "Suministros médicos"
+    },
+    "statuses": {
+      "requested": "Solicitado",
+      "pickedUp": "Recogido",
+      "enRoute": "En camino",
+      "delivered": "Entregado"
+    },
+    "zones": {
+      "a": "Zona A",
+      "b": "Zona B",
+      "c": "Zona C"
+    },
+    "sources": {
+      "referral": "Referencia",
+      "walkIn": "Presencial",
+      "online": "En línea"
+    },
+    "table": {
+      "requestNumber": "N.º de solicitud",
+      "needType": "Tipo de necesidad",
+      "zone": "Zona",
+      "source": "Fuente",
+      "status": "Estado",
+      "assigned": "Asignado"
+    },
+    "errors": {
+      "fetch": "Error al obtener las solicitudes"
+    },
+    "empty": "No se encontraron solicitudes que coincidan con tus filtros.",
+    "unknown": "Desconocido"
+  },
+  "RequestHeader": {
+    "title": "Solicitudes",
+    "adminSubtitle": "Gestiona y rastrea las solicitudes de alcance comunitario.",
+    "userSubtitle": "Puedes solicitar ayuda en el formulario proporcionado.",
+    "tabs": {
+      "allRequests": "Todas las Solicitudes",
+      "quickEntry": "Entrada Rápida",
+      "supportOffers": "Ofertas de Apoyo"
+    }
+  },
+  "AssignVolunteerDialog": {
+    "title": "Asignar solicitud a voluntario",
+    "searchPlaceholder": "Buscar voluntario por nombre, email o teléfono…",
+    "loading": "Cargando voluntarios…",
+    "noVolunteers": "No se encontraron voluntarios.",
+    "assignButton": "Asignar",
+    "successToast": "Solicitud asignada con éxito",
+    "errorToast": "Error al asignar la solicitud"
+  },
+  "RequestDetail": {
+    "loading": "Cargando...",
+    "error": "Error al cargar la solicitud",
+    "noChanges": "No hay cambios para actualizar",
+    "updateStatus": "Actualizar Estado",
+    "HeaderSection": {
+      "requests": "Solicitudes",
+      "requestNumber": "Solicitud #{{requestNumber}}",
+      "updated": "Actualizado {{timeAgo}}",
+      "justNow": "Ahora mismo"
+    },
+    "StatusSection": {
+      "title": "Estado",
+      "requested": "Solicitada",
+      "pickedUp": "Recogida",
+      "enRoute": "En Camino",
+      "delivered": "Entregada"
+    },
+    "RecipientSection": {
+      "title": "Destinatario",
+      "addressNotProvided": "Dirección no proporcionada",
+      "call": "Llamar"
+    },
+    "UploadSection": {
+      "uploadPhoto": "Subir Foto"
+    },
+    "NotesSection": {
+      "addNotes": "Agregar Notas",
+      "placeholder": "Agrega cualquier nota adicional..."
+    },
+    "AdditionalInfoSection": {
+      "zone": "Zona",
+      "priority": "Prioridad",
+      "additionalNotes": "Notas Adicionales",
+      "na": "N/A"
+    }
+  },
+  "VolunteerDashboard": {
+    "title": "Panel de Voluntario",
+    "myProfile": "Mi Perfil",
+    "noRequests": "No hay solicitudes asignadas",
+    "noRequestsDesc": "Una vez que te asignen una solicitud, aparecerá aquí.",
+    "error": "Error al cargar solicitudes: {{message}}",
+    "table": {
+      "requestNumber": "Solicitud #",
+      "needType": "Tipo de Necesidad",
+      "zone": "Zona",
+      "source": "Fuente",
+      "status": "Estado"
     }
   }
 }

@@ -1,4 +1,19 @@
 {
+  "Navbar": {
+    "logo": "FMH",
+    "about": "About",
+    "services": "Services",
+    "signUp": "Sign Up",
+    "logIn": "Log In",
+    "adminDashboard": "Admin Dashboard",
+    "volunteerDashboard": "Volunteer Dashboard",
+    "logOut": "Log Out",
+    "loggingOut": "Logging Out...",
+    "toast": {
+      "logoutSuccess": "Logged out successfully!",
+      "logoutError": "Failed to log out."
+    }
+  },
   "HomePage": {
     "title": "Connecting Neighbors, Strengthening Communities",
     "sub-banner-text": "We're here to help. Whether you need assistance or want to contribute, we're building a stronger community together.",
@@ -25,6 +40,24 @@
     "terms-of-service": "Terms of Service",
     "footer": "©2024 Community Connect. All rights reserved."
   },
+  "SignInForm": {
+    "title": "Sign In",
+    "emailOrPhonePlaceholder": "Email or Phone",
+    "passwordPlaceholder": "Password",
+    "submitButton": "Sign In",
+    "submittingButton": "Signing in...",
+    "signupPrompt": "New to FMH? {link}",
+    "signupLink": "Sign Up",
+    "errors": {
+      "emailOrPhoneRequired": "Please enter your email or phone number",
+      "passwordRequired": "Password is required",
+      "invalidInput": "Please enter a valid email or phone number.",
+      "signInFailed": "Sign-in failed",
+      "sessionError": "Login failed: session sync error",
+      "unexpectedError": "Something went wrong."
+    },
+    "success": "Signed in successfully"
+  },
   "SignUp": {
     "title": "Create Your Account",
     "sub-title": "Join our community — it’s quick and easy!",
@@ -37,6 +70,24 @@
     "submit": "Sign Up",
     "success": "Your account has been created! We’ll activate it soon.",
     "error": "Something went wrong. Please try again."
+  },
+  "UserSignUpForm": {
+    "title": "Create Your Account",
+    "subtitle": "Join our platform and get started",
+    "fullName": "Full Name",
+    "contactInfo": "Email or Phone",
+    "zone": "Zone (optional)",
+    "password": "Password",
+    "submitButton": "Sign Up",
+    "submittingButton": "Creating...",
+    "success": "Account created successfully!",
+    "errors": {
+      "fullNameRequired": "Full name is required",
+      "contactRequired": "Email or phone is required",
+      "passwordRequired": "Password is required",
+      "submitError": "Error submitting form",
+      "unexpectedError": "Something went wrong. Please try again."
+    }
   },
   "RequestForm": {
     "form-title": "Need Help?",
@@ -119,7 +170,7 @@
     "medical": "Medical",
     "education": "Education",
     "entryLabel": "Added By",
-    "hygiene-kit":"Hygiene Kit",
+    "hygiene-kit": "Hygiene Kit",
     "selectEntry": "Choose source",
     "community": "Community",
     "volunteer": "Volunteer",
@@ -223,6 +274,127 @@
       "description": "Whether you want to volunteer, donate, or raise awareness — every action strengthens communities.",
       "volunteer": "Volunteer",
       "donate": "Donate"
+    }
+  },
+  "UnauthorizedPage": {
+    "title": "Access Denied",
+    "description": "You don’t have permission to view this page. If you believe this is a mistake, please contact your administrator.",
+    "goHome": "Go Home",
+    "signIn": "Sign In"
+  },
+  "all_requests": {
+    "title": "Requests",
+    "filters": {
+      "needType": "Need Type",
+      "status": "Status",
+      "zone": "Zone",
+      "source": "Source",
+      "all": "All"
+    },
+    "needTypes": {
+      "food": "Food Assistance",
+      "clothing": "Clothing",
+      "shelter": "Shelter",
+      "medical": "Medical Supplies"
+    },
+    "statuses": {
+      "requested": "Requested",
+      "pickedUp": "Picked Up",
+      "enRoute": "En Route",
+      "delivered": "Delivered"
+    },
+    "zones": {
+      "a": "Zone A",
+      "b": "Zone B",
+      "c": "Zone C"
+    },
+    "sources": {
+      "referral": "Referral",
+      "walkIn": "Walk-in",
+      "online": "Online"
+    },
+    "table": {
+      "requestNumber": "Request #",
+      "needType": "Need Type",
+      "zone": "Zone",
+      "source": "Source",
+      "status": "Status",
+      "assigned": "Assigned"
+    },
+    "errors": {
+      "fetch": "Error fetching requests"
+    },
+    "empty": "No requests found matching your filters.",
+    "unknown": "Unknown"
+  },
+  "RequestHeader": {
+    "title": "Requests",
+    "adminSubtitle": "Manage and track community outreach requests.",
+    "userSubtitle": "You can request for help in the given form.",
+    "tabs": {
+      "allRequests": "All Requests",
+      "quickEntry": "Quick Entry",
+      "supportOffers": "Support Offers"
+    }
+  },
+  "AssignVolunteerDialog": {
+    "title": "Assign Request to Volunteer",
+    "searchPlaceholder": "Search volunteer by name, email or phone…",
+    "loading": "Loading volunteers…",
+    "noVolunteers": "No volunteers found.",
+    "assignButton": "Assign",
+    "successToast": "Request assigned successfully",
+    "errorToast": "Failed to assign request"
+  },
+  "RequestDetail": {
+    "loading": "Loading...",
+    "error": "Error loading request",
+    "noChanges": "No changes to update",
+    "updateStatus": "Update Status",
+    "HeaderSection": {
+      "requests": "Requests",
+      "requestNumber": "Request #{{requestNumber}}",
+      "updated": "Updated {{timeAgo}}",
+      "justNow": "Just now"
+    },
+    "StatusSection": {
+      "title": "Status",
+      "requested": "Requested",
+      "pickedUp": "Picked Up",
+      "enRoute": "En Route",
+      "delivered": "Delivered"
+    },
+    "RecipientSection": {
+      "title": "Recipient",
+      "addressNotProvided": "Address not provided",
+      "call": "Call"
+    },
+    "UploadSection": {
+      "uploadPhoto": "Upload Photo"
+    },
+    "NotesSection": {
+      "addNotes": "Add Notes",
+      "placeholder": "Add any additional notes..."
+    },
+    "AdditionalInfoSection": {
+      "zone": "Zone",
+      "priority": "Priority",
+      "additionalNotes": "Additional Notes",
+      "na": "N/A"
+    }
+  },
+  "VolunteerDashboard": {
+    "title": "Volunteer Dashboard",
+    "myProfile": "My Profile",
+    "noRequests": "No Requests Assigned",
+    "noRequestsDesc": "Once you are assigned to a request, it will appear here.",
+    "error": "Error fetching requests: {{message}}",
+    "table": {
+      "requestNumber": "Request #",
+      "needType": "Need Type",
+      "zone": "Zone",
+      "source": "Source",
+      "status": "Status"
     }
   }
 }

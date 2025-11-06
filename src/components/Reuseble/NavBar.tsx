@@ -10,27 +10,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getUser, handleUserLogout } from "@/store/AuthSlice";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export default function Navbar() {
+  const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const { locale } = useParams();
   const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleLogout = async () => {
     try {
       setLoggingOut(true);
       await supabase.auth.signOut();
       await fetch("/api/auth/signout", {
         method: "POST",
-        credentials: "include", // ensure cookies are sent
+        credentials: "include",
       });
       dispatch(handleUserLogout());
-      toast.success("Logged out successfully!");
+      toast.success(t("toast.logoutSuccess"));
       window.location.href = `/${locale}/signin`;
     } catch (err) {
       console.error("Logout failed:", err);
-      toast.error("Failed to log out.");
+      toast.error(t("toast.logoutError"));
 
       // FORCE CLEAR ON ERROR
       document.cookie.split(";").forEach((c) => {
@@ -44,11 +48,8 @@ export default function Navbar() {
     }
   };
 
-  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    (async () => {
-      await dispatch(getUser());
-    })();
+    dispatch(getUser());
   }, [dispatch]);
 
   return (
@@ -56,50 +57,43 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href={`/${locale}`} className="flex items-center gap-2">
-            <span className="font-semibold text-lg text-gray-900">FMH</span>
+            <span className="font-semibold text-lg text-gray-900">{t("logo")}</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
-            <Link
-              href={`/${locale}/about`}
-              className="text-gray-800 hover:text-cgreen/80"
-            >
-              About
+            <Link href={`/${locale}/about`} className="text-gray-800 hover:text-cgreen/80">
+              {t("about")}
             </Link>
-            <Link
-              href={`/${locale}/services`}
-              className="text-gray-800 hover:text-cgreen/80"
-            >
-              Services
+            <Link href={`/${locale}/services`} className="text-gray-800 hover:text-cgreen/80">
+              {t("services")}
             </Link>
 
             <div className="flex items-center gap-3">
-              {/* ✅ Conditional Buttons */}
               {!user ? (
                 <>
                   <Button asChild className="bg-cgreen hover:bg-cgreen/90">
-                    <Link href={`/${locale}/volunteer-signup`}>Sign Up</Link>
+                    <Link href={`/${locale}/user-signup`}>{t("signUp")}</Link>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
                     className="border-green-100 bg-sgreen hover:bg-green-100 text-gray-800"
                   >
-                    <Link href={`/${locale}/signin`}>Log In</Link>
+                    <Link href={`/${locale}/signin`}>{t("logIn")}</Link>
                   </Button>
                 </>
               ) : (
                 <>
                   {user.role === "admin" && (
                     <Button asChild className="bg-cgreen hover:bg-cgreen/90">
-                      <Link href={`/${locale}/request`}>Admin Dashboard</Link>
+                      <Link href={`/${locale}/request`}>{t("adminDashboard")}</Link>
                     </Button>
                   )}
                   {user.role === "volunteer" && (
                     <Button asChild className="bg-cgreen hover:bg-cgreen/90">
                       <Link href={`/${locale}/volunteer/dashboard`}>
-                        Volunteer Dashboard
+                        {t("volunteerDashboard")}
                       </Link>
                     </Button>
                   )}
@@ -107,8 +101,9 @@ export default function Navbar() {
                     variant="outline"
                     className="border-green-100 bg-sgreen hover:bg-green-100 text-gray-800"
                     onClick={handleLogout}
+                    disabled={loggingOut}
                   >
-                    Log Out
+                    {loggingOut ? t("loggingOut") : t("logOut")}
                   </Button>
                 </>
               )}
@@ -140,14 +135,14 @@ export default function Navbar() {
               className="text-gray-800 hover:text-cgreen/80"
               onClick={toggleMenu}
             >
-              About
+              {t("about")}
             </Link>
             <Link
               href={`/${locale}/services`}
               className="text-gray-800 hover:text-cgreen/80"
               onClick={toggleMenu}
             >
-              Services
+              {t("services")}
             </Link>
 
             <div className="flex flex-col gap-3 mt-6 w-48">
@@ -157,11 +152,8 @@ export default function Navbar() {
                     asChild
                     className="bg-cgreen hover:bg-cgreen/90 w-full text-white"
                   >
-                    <Link
-                      href={`/${locale}/volunteer-signup`}
-                      onClick={toggleMenu}
-                    >
-                      Sign Up
+                    <Link href={`/${locale}/user-signup`} onClick={toggleMenu}>
+                      {t("signUp")}
                     </Link>
                   </Button>
 
@@ -171,7 +163,7 @@ export default function Navbar() {
                     className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
                   >
                     <Link href={`/${locale}/signin`} onClick={toggleMenu}>
-                      Sign In
+                      {t("logIn")}
                     </Link>
                   </Button>
                 </>
@@ -182,11 +174,8 @@ export default function Navbar() {
                       asChild
                       className="bg-cgreen hover:bg-cgreen/90 w-full"
                     >
-                      <Link
-                        href={`/${locale}/admin/dashboard`}
-                        onClick={toggleMenu}
-                      >
-                        Admin Dashboard
+                      <Link href={`/${locale}/admin/dashboard`} onClick={toggleMenu}>
+                        {t("adminDashboard")}
                       </Link>
                     </Button>
                   )}
@@ -195,11 +184,8 @@ export default function Navbar() {
                       asChild
                       className="bg-cgreen hover:bg-cgreen/90 w-full"
                     >
-                      <Link
-                        href={`/${locale}/volunteer/dashboard`}
-                        onClick={toggleMenu}
-                      >
-                        Volunteer Dashboard
+                      <Link href={`/${locale}/volunteer/dashboard`} onClick={toggleMenu}>
+                        {t("volunteerDashboard")}
                       </Link>
                     </Button>
                   )}
@@ -209,7 +195,7 @@ export default function Navbar() {
                     disabled={loggingOut}
                     onClick={handleLogout}
                   >
-                    {loggingOut ? "Logging Out..." : "Log Out"}
+                    {loggingOut ? t("loggingOut") : t("logOut")}
                   </Button>
                 </>
               )}

@@ -3,6 +3,7 @@
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface RequestHeaderProps {
   tabState: string;
@@ -13,26 +14,24 @@ export const RequestHeader: React.FC<RequestHeaderProps> = ({
   tabState,
   setTabState,
 }) => {
+  const t = useTranslations("RequestHeader");
   const { user } = useSelector((state: RootState) => state.user);
   const isAdmin = user?.role === "admin";
 
-  // Tabs config
   const tabs = [
-    { id: "all-requests", label: "All Requests" },
-    { id: "quick-entry", label: "Quick Entry" },
-    { id: "support-offers", label: "Support Offers" },
+    { id: "all-requests", label: t("tabs.allRequests") },
+    { id: "quick-entry", label: t("tabs.quickEntry") },
+    { id: "support-offers", label: t("tabs.supportOffers") },
   ];
 
   return (
     <div className="mb-6">
       <div className="text-center sm:text-left">
         <h1 className="text-2xl sm:text-3xl font-semibold text-black">
-          Requests
+          {t("title")}
         </h1>
         <p className="text-xs sm:text-sm text-cgreen mt-1">
-          {isAdmin
-            ? "Manage and track community outreach requests."
-            : "You can request for help in the given form."}
+          {isAdmin ? t("adminSubtitle") : t("userSubtitle")}
         </p>
       </div>
 

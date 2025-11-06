@@ -1,14 +1,26 @@
 import { IRequest } from "@/types/types";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
-export function HeaderSection({ request, locale }:  {request: IRequest | undefined, locale: string}) {
+export function HeaderSection({
+  request,
+  locale,
+}: {
+  request: IRequest | undefined;
+  locale: string;
+}) {
+  const t = useTranslations("RequestDetail.HeaderSection");
   const updatedAt = request?.updated_at;
+
   return (
     <div className="mb-8">
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-        <Link href={`/${locale}/request`} className="text-cgreen hover:underline">
-          Requests
+        <Link
+          href={`/${locale}/request`}
+          className="text-cgreen hover:underline"
+        >
+          {t("requests")}
         </Link>
         <span>/</span>
         <span>Request #{request?.request_number}</span>
