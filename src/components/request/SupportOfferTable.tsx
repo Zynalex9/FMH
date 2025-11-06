@@ -79,7 +79,7 @@ export function SupportOffersTable() {
   ];
 
   return (
-    <div className="py-10">
+    <div className="py-10 " >
       {/* Filters */}
       <div className="flex gap-4 pb-6 flex-wrap">
         {filters.map(({ label, options, value, setValue }) => (

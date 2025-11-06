@@ -103,7 +103,7 @@ export default function SupportOfferPage() {
               <option value="food">{t("food")}</option>
               <option value="clothes">{t("clothes")}</option>
               <option value="medicine">{t("medicine")}</option>
-              <option value="hygiene kit">{t("hygiene-kit")}</option>
+              <option value="hygiene-kit">{t("hygiene-kit")}</option>
               <option value="other">Other</option>
             </select>
           </div>

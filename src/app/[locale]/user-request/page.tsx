@@ -159,6 +159,7 @@ const onSubmit = async (data: FormValues) => {
               <option value="food">{t("food")}</option>
               <option value="medical">{t("medical")}</option>
               <option value="education">{t("education")}</option>
+              <option value="hygiene-kit">{t("hygiene-kit")}</option>
               <option value="others">Others</option>
             </select>
 

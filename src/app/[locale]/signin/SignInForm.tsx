@@ -120,11 +120,11 @@ const onSubmit = async (data: FormData) => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-cgreen text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          className="w-full bg-cgreen text-white py-2 rounded-lg hover:bg-cgreen/80  cursor-pointer transition-colors"
         >
           {isSubmitting ? "Signing in..." : "Sign In"}
         </button>
-        <p className="text-center">New to FMH? <Link href="/en/signup" className="text-cgreen">Sign Up</Link></p>
+        <p className="text-center">New to FMH? <Link href="/en/volunteer-signup" className="text-cgreen">Sign Up</Link></p>
       </form>
     </div>
   );

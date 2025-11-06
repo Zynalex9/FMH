@@ -19,11 +19,6 @@ const AUTH_ROUTES = [
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
 
   const { pathname } = req.nextUrl;
 
@@ -35,23 +30,28 @@ export async function middleware(req: NextRequest) {
   );
 
   console.log("🧭 Middleware hit:", pathname);
-  console.log("👤 Session user:", session?.user?.id);
 
-  // --- LOGGED-IN USER accessing signin/signup → redirect to home ---
-  if (session && isAuthRoute) {
-    console.log("🚫 Logged-in user accessing auth page → redirecting to /en");
-    return NextResponse.redirect(new URL("/en", req.url));
-  }
+
 
   // --- PUBLIC ROUTE (not protected) → allow ---
   if (!isProtected) return res;
+  const supabase = createMiddlewareClient({ req, res });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   // --- NO SESSION → LOGIN ---
   if (!session) {
     console.log("🚫 No session → redirecting to /en/signin");
     return NextResponse.redirect(new URL("/en/signin", req.url));
   }
-
+  // --- LOGGED-IN USER accessing signin/signup → redirect to home ---
+  if (session && isAuthRoute) {
+    console.log("🚫 Logged-in user accessing auth page → redirecting to /en");
+    return NextResponse.redirect(new URL("/en", req.url));
+  }
+  console.log("👤 Session user:", session?.user?.id);
   // --- ROLE LOGIC ---
   const metadata = session.user.user_metadata;
   const role = metadata?.role;
