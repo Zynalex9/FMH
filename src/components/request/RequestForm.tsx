@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { capitalizeWords } from "@/lib/helper";
 
 interface FormData {
   request_title: string;
@@ -305,9 +306,11 @@ const RequestForm = () => {
 
         {(selectedZone || selectedNeed || selectedSource) && (
           <div className="flex flex-wrap gap-2 justify-center mt-4 text-sm text-cgreen">
-            {selectedZone && <span>Zone: {selectedZone}</span>}
-            {selectedNeed && <span>Need: {selectedNeed}</span>}
-            {selectedSource && <span>Source: {selectedSource}</span>}
+            {selectedZone && <span className="bg-sgreen p-1 rounded-full">Zone: {capitalizeWords(selectedZone)}</span>}
+            {selectedNeed && <span className="bg-sgreen p-1 rounded-full">Need: {capitalizeWords(selectedNeed)}</span>}
+            {selectedSource && (
+              <span className="bg-sgreen p-1 rounded-full">Source: {capitalizeWords(selectedSource)}</span>
+            )}
           </div>
         )}
 
