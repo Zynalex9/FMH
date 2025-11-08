@@ -380,6 +380,7 @@
       "zone": "Zone",
       "priority": "Priority",
       "additionalNotes": "Additional Notes",
+      "need_type": "Need Type",
       "na": "N/A"
     }
   },
@@ -396,5 +397,11 @@
       "source": "Source",
       "status": "Status"
     }
+  },
+  "response_messages": {
+    "unauthorized": "You're not authorized to perform this action. Please contact the admin.",
+    "invalid_status": "You can only set the status to 'En route' or 'Delivered'.",
+    "request_updated": "Request updated successfully",
+    "unexpected_error": "An unexpected error occurred"
   }
 }

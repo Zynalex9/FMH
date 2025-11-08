@@ -33,21 +33,19 @@ export function RequestDetail({}: RequestDetailProps) {
     if (request?.notes) setNotes(request.notes);
   }, [request]);
 
-  const updateRequest = useUpdateRequest(status, notes, requestId as string);
+  const updateRequest = useUpdateRequest();
 
   if (isLoading) return <div className="text-center py-10">{t("loading")}</div>;
   if (error)
-    return (
-      <div className="text-center text-red-500">{t("error")}</div>
-    );
+    return <div className="text-center text-red-500">{t("error")}</div>;
 
   const handleUpdate = async () => {
-    if(!request) return;
-    if(status === request.status && notes === request.notes) {
+    if (!request) return;
+    if (status === request.status && notes === request.notes) {
       toast.info(t("noChanges"));
       return;
     }
-    updateRequest.mutate(); 
+    updateRequest.mutate({ status, notes, requestId: request.id });
   };
 
   return (
@@ -62,7 +60,10 @@ export function RequestDetail({}: RequestDetailProps) {
       <NotesSection notes={notes} setNotes={setNotes} />
       <AdditionalInfoSection request={request} />
       <div className="flex justify-end">
-        <Button onClick={handleUpdate} className="bg-cgreen hover:bg-cgreen/90 text-white">
+        <Button
+          onClick={handleUpdate}
+          className="bg-cgreen hover:bg-cgreen/90 text-white"
+        >
           {t("updateStatus")}
         </Button>
       </div>

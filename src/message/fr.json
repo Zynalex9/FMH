@@ -378,6 +378,7 @@
       "zone": "Zone",
       "priority": "Priorité",
       "additionalNotes": "Notes supplémentaires",
+      "need_type": "Type de besoin",
       "na": "N/A"
     }
   },
@@ -394,5 +395,11 @@
       "source": "Source",
       "status": "Statut"
     }
+  },
+  "response_messages": {
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action. Veuillez contacter l'administrateur.",
+    "invalid_status": "Vous pouvez uniquement définir le statut sur « En route » ou « Livré ».",
+    "request_updated": "La demande a été mise à jour avec succès",
+    "unexpected_error": "Une erreur inattendue est survenue"
   }
 }

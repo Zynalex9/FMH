@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
 import { IRequest } from "@/types/types";
+import { useTranslations } from "next-intl";
 
 export const getRequests = async (): Promise<IRequest[]> => {
   const { data, error } = await supabase.from("requests").select(`
@@ -39,15 +40,15 @@ export async function updateRequestFn(
   status: string,
   notes: string,
   requestId: string
-): Promise<IRequest[]> {
+): Promise<IRequest> {
   const { data, error } = await supabase
     .from("requests")
     .update({ status, notes })
     .eq("id", requestId)
+    .select("*")
     .single();
-  if (error) {
-    console.error("Error updating request:", error.message);
-    throw new Error(error.message);
-  }
-  return data ?? [];
+
+  if (error) throw error; 
+
+  return data;
 }

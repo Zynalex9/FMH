@@ -378,6 +378,7 @@
       "zone": "Zona",
       "priority": "Prioridad",
       "additionalNotes": "Notas Adicionales",
+      "need_type": "Tipo de necesidad",
       "na": "N/A"
     }
   },
@@ -394,5 +395,11 @@
       "source": "Fuente",
       "status": "Estado"
     }
+  },
+  "response_messages": {
+    "unauthorized": "No estás autorizado para realizar esta acción. Por favor, contacta al administrador.",
+    "invalid_status": "Solo puedes establecer el estado en « En camino » o « Entregado ».",
+  "request_updated": "Solicitud actualizada con éxito",
+  "unexpected_error": "Ocurrió un error inesperado"
   }
 }
