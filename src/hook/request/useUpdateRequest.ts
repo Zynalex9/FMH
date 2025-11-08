@@ -26,10 +26,7 @@ export function useUpdateRequest() {
     },
 
     onError: (error: any) => {
-      if (error.code === "PGRST116") {
-        console.log(error)
-        toast.error(t("invalid_status"));
-      } else if (error.code === "42501") {
+      if (error.code === "PGRST116" || error.code === "42501") {
         console.log(error)
         toast.error(t("unauthorized"));
       } else {
