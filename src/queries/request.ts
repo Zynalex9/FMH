@@ -34,21 +34,28 @@ export const getRequest = async (requestId: string): Promise<IRequest> => {
   }
 
   return data ?? [];
-};
-
+}
 export async function updateRequestFn(
   status: string,
   notes: string,
-  requestId: string
+  requestId: string,
+  proofUrls?: string[]          
 ): Promise<IRequest> {
+  const updatePayload: Partial<IRequest> = { status, notes };
+
+  // Only add proof_urls if we actually received new URLs
+  if (proofUrls && proofUrls.length > 0) {
+    updatePayload.proof_urls = proofUrls;
+  }
+
   const { data, error } = await supabase
     .from("requests")
-    .update({ status, notes })
+    .update(updatePayload)
     .eq("id", requestId)
     .select("*")
     .single();
 
-  if (error) throw error; 
+  if (error) throw error;
 
   return data;
 }

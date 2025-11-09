@@ -42,6 +42,7 @@ export interface IRequest {
   created_at: string;
   updated_at: string;
   assigned_user: IUser | null;
+  proof_urls?: string[]
 }
 
 export interface ISupportOffer {

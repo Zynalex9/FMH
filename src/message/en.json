@@ -347,10 +347,14 @@
     "errorToast": "Failed to assign request"
   },
   "RequestDetail": {
-    "loading": "Loading...",
-    "error": "Error loading request",
-    "noChanges": "No changes to update",
+"noChanges": "No changes to save.",
+    "uploadRequiredForDelivered": "You must upload at least one photo to mark as Delivered.",
+    "adminOnlyAfterDelivered": "This request is already Delivered. Only admin can edit.",
+    "saving": "Saving…",
     "updateStatus": "Update Status",
+    "loading": "Loading...",
+    "error": "Failed to load request.",
+
     "HeaderSection": {
       "requests": "Requests",
       "requestNumber": "Request #{{requestNumber}}",
@@ -370,7 +374,8 @@
       "call": "Call"
     },
     "UploadSection": {
-      "uploadPhoto": "Upload Photo"
+     "uploadPhoto": "Upload Proof Photo",
+    "requiredForDelivered": "Required for Delivered status"
     },
     "NotesSection": {
       "addNotes": "Add Notes",
