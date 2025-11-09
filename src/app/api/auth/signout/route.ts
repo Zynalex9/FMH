@@ -3,13 +3,19 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST() {
-  console.log("Signout route called");
-  const supabase = createRouteHandlerClient({ cookies });
-  const { error } = await supabase.auth.signOut();
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
 
-  if (error) {
-    return NextResponse.json({ success: false, error: error.message });
-  }
+  await supabase.auth.signOut();
 
-  return NextResponse.json({ success: true });
+  const response = NextResponse.json({ success: true });
+
+  response.cookies.set({
+    name: process.env.SUPABASE_PROJECT_NAME!,
+    value: "",
+    path: "/",
+    expires: new Date(0),
+  });
+
+  return response;
 }

@@ -21,32 +21,28 @@ export default function Navbar() {
   const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleLogout = async () => {
-    try {
-      setLoggingOut(true);
-      await supabase.auth.signOut();
-      await fetch("/api/auth/signout", {
-        method: "POST",
-        credentials: "include",
-      });
-      dispatch(handleUserLogout());
-      toast.success(t("toast.logoutSuccess"));
-      window.location.href = `/${locale}/signin`;
-    } catch (err) {
-      console.error("Logout failed:", err);
-      toast.error(t("toast.logoutError"));
+const handleLogout = async () => {
+  try {
+    setLoggingOut(true);
+    await supabase.auth.signOut();
+    const res = await fetch("/api/auth/signout", {
+      method: "POST",
+      credentials: "include",
+    });
 
-      // FORCE CLEAR ON ERROR
-      document.cookie.split(";").forEach((c) => {
-        document.cookie = c
-          .replace(/^ +/, "")
-          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-      });
-      window.location.href = `/${locale}/signin`;
-    } finally {
-      setLoggingOut(false);
-    }
-  };
+    if (!res.ok) throw new Error("Failed to sign out");
+    dispatch(handleUserLogout());
+
+    toast.success(t("toast.logoutSuccess"));
+    window.location.href = `/${locale}/signin`;
+  } catch (err) {
+    console.error("Logout error:", err);
+    toast.error(t("toast.logoutError"));
+    window.location.href = `/${locale}/signin`;
+  } finally {
+    setLoggingOut(false);
+  }
+};
 
   useEffect(() => {
     dispatch(getUser());
