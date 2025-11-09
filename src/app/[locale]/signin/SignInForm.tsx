@@ -68,7 +68,7 @@ export default function SignInForm() {
       toast.success(t("success"));
 
       // Redirect to protected route
-      window.location.href = "/en/request";
+      window.location.href = "/en/";
     } catch (error) {
       console.error("Unexpected error:", error);
       toast.error(t("errors.unexpectedError"));

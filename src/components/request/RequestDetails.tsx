@@ -12,6 +12,8 @@ import { AdditionalInfoSection } from "../Single/Info";
 import { NotesSection } from "../Single/NotesSection";
 import { useUpdateRequest } from "@/hook/request/useUpdateRequest";
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface RequestDetailProps {}
 
@@ -21,7 +23,7 @@ export function RequestDetail({}: RequestDetailProps) {
   const [notes, setNotes] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const { locale, requestId } = useParams();
-
+  const { user } = useSelector((state: RootState) => state.user);
   const {
     data: request,
     isLoading,
@@ -40,14 +42,19 @@ export function RequestDetail({}: RequestDetailProps) {
     return <div className="text-center text-red-500">{t("error")}</div>;
 
   const handleUpdate = async () => {
-    if (!request) return;
+    if (!request || !user) return;
     if (status === request.status && notes === request.notes) {
       toast.info(t("noChanges"));
       return;
     }
+    if (request.status === "delivered" && user.role != "admin") {
+      toast.error(
+        "This request has been fulfilled. Only admin can change the status now"
+      );
+      return;
+    }
     updateRequest.mutate({ status, notes, requestId: request.id });
   };
-
   return (
     <div className="max-w-5xl mx-auto p-6 bg-cbg space-y-8">
       <HeaderSection request={request} locale={locale as string} />
