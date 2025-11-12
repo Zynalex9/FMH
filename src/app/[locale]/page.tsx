@@ -11,8 +11,8 @@ export default function HomePage() {
       <div className="md:px-24">
         <Banner />
       </div>
-      <div className="px-6 md:px-24">
         <HelpSection />
+      <div className="px-3 md:px-24">
         <OurServices />
         <GetInvolved />
         <ContactUs />
