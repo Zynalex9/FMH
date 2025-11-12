@@ -56,7 +56,7 @@ export default function ServicesPage() {
       title: t("services.dashboard.title"),
       description: t("services.dashboard.description"),
       buttonText: t("services.dashboard.button"),
-      path: "volunteer-dashboard",
+      path: "volunteer/dashboard",
     },
   ];
 
