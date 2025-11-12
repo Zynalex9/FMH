@@ -28,21 +28,14 @@ export default function ServicesPage() {
       title: t("services.request.title"),
       description: t("services.request.description"),
       buttonText: t("services.request.button"),
-      path: "request-help",
+      path: "user-request",
     },
     {
       icon: <ClipboardList className="w-6 h-6 text-cgreen" />,
       title: t("services.admin.title"),
       description: t("services.admin.description"),
       buttonText: t("services.admin.button"),
-      path: "admin-entry",
-    },
-    {
-      icon: <Truck className="w-6 h-6 text-cgreen" />,
-      title: t("services.delivery.title"),
-      description: t("services.delivery.description"),
-      buttonText: t("services.delivery.button"),
-      path: "delivery-tracking",
+      path: "request",
     },
     {
       icon: <Users className="w-6 h-6 text-cgreen" />,
@@ -63,7 +56,7 @@ export default function ServicesPage() {
       title: t("services.dashboard.title"),
       description: t("services.dashboard.description"),
       buttonText: t("services.dashboard.button"),
-      path: "dashboard",
+      path: "volunteer-dashboard",
     },
   ];
 
