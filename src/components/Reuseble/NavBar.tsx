@@ -11,7 +11,6 @@ import { AppDispatch, RootState } from "@/store/store";
 import { getUser, handleUserLogout } from "@/store/AuthSlice";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
@@ -60,9 +59,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-2">
-            <span className="font-semibold text-lg text-gray-900">
-              {t("logo")}
-            </span>
+            <span className="font-semibold text-lg text-gray-900">{t("logo")}</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -77,7 +74,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Auth Buttons */}
             <div className="flex items-center gap-3">
               {!user ? (
                 <>
@@ -96,9 +92,7 @@ export default function Navbar() {
                 <>
                   {user.role === "admin" && (
                     <Button asChild className="bg-cgreen hover:bg-cgreen/90">
-                      <Link href={`/${locale}/request`}>
-                        {t("adminDashboard")}
-                      </Link>
+                      <Link href={`/${locale}/request`}>{t("adminDashboard")}</Link>
                     </Button>
                   )}
                   {user.role === "volunteer" && (
@@ -131,95 +125,92 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-cbg flex flex-col items-center justify-center z-40"
-          >
-            <button
+      <div
+        className={`fixed inset-0 bg-cbg flex flex-col items-center justify-center z-40 transform transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "opacity-100 translate-y-0 visible"
+            : "opacity-0 -translate-y-5 invisible pointer-events-none"
+        }`}
+      >
+        <button
+          onClick={toggleMenu}
+          className="absolute top-5 right-5 text-gray-700 hover:text-gray-900"
+          aria-label="Close menu"
+        >
+          <X size={28} />
+        </button>
+
+        <div className="flex flex-col space-y-6 text-center text-lg font-medium">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-gray-800 hover:text-cgreen/80 transition-colors"
               onClick={toggleMenu}
-              className="absolute top-5 right-5 text-gray-700 hover:text-gray-900"
             >
-              <X size={28} />
-            </button>
+              {link.label}
+            </Link>
+          ))}
 
-            <div className="flex flex-col space-y-6 text-center text-lg font-medium">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-800 hover:text-cgreen/80 transition-colors"
-                  onClick={toggleMenu}
+          <div className="flex flex-col gap-3 mt-6 w-48">
+            {!user ? (
+              <>
+                <Button
+                  asChild
+                  className="bg-cgreen hover:bg-cgreen/90 w-full text-white"
                 >
-                  {link.label}
-                </Link>
-              ))}
-
-              <div className="flex flex-col gap-3 mt-6 w-48">
-                {!user ? (
-                  <>
-                    <Button
-                      asChild
-                      className="bg-cgreen hover:bg-cgreen/90 w-full text-white"
-                    >
-                      <Link href={`/${locale}/user-signup`} onClick={toggleMenu}>
-                        {t("signUp")}
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
-                    >
-                      <Link href={`/${locale}/signin`} onClick={toggleMenu}>
-                        {t("logIn")}
-                      </Link>
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    {user.role === "admin" && (
-                      <Button
-                        asChild
-                        className="bg-cgreen hover:bg-cgreen/90 w-full"
-                      >
-                        <Link href={`/${locale}/request`} onClick={toggleMenu}>
-                          {t("adminDashboard")}
-                        </Link>
-                      </Button>
-                    )}
-                    {user.role === "volunteer" && (
-                      <Button
-                        asChild
-                        className="bg-cgreen hover:bg-cgreen/90 w-full"
-                      >
-                        <Link
-                          href={`/${locale}/volunteer/dashboard`}
-                          onClick={toggleMenu}
-                        >
-                          {t("volunteerDashboard")}
-                        </Link>
-                      </Button>
-                    )}
-                    <Button
-                      variant="outline"
-                      className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
-                      disabled={loggingOut}
-                      onClick={handleLogout}
-                    >
-                      {loggingOut ? t("loggingOut") : t("logOut")}
-                    </Button>
-                  </>
+                  <Link href={`/${locale}/user-signup`} onClick={toggleMenu}>
+                    {t("signUp")}
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
+                >
+                  <Link href={`/${locale}/signin`} onClick={toggleMenu}>
+                    {t("logIn")}
+                  </Link>
+                </Button>
+              </>
+            ) : (
+              <>
+                {user.role === "admin" && (
+                  <Button
+                    asChild
+                    className="bg-cgreen hover:bg-cgreen/90 w-full"
+                  >
+                    <Link href={`/${locale}/request`} onClick={toggleMenu}>
+                      {t("adminDashboard")}
+                    </Link>
+                  </Button>
                 )}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {user.role === "volunteer" && (
+                  <Button
+                    asChild
+                    className="bg-cgreen hover:bg-cgreen/90 w-full"
+                  >
+                    <Link
+                      href={`/${locale}/volunteer/dashboard`}
+                      onClick={toggleMenu}
+                    >
+                      {t("volunteerDashboard")}
+                    </Link>
+                  </Button>
+                )}
+                <Button
+                  variant="outline"
+                  className="border-green-100 bg-sgreen hover:bg-sgreen/90 text-gray-800 w-full"
+                  disabled={loggingOut}
+                  onClick={handleLogout}
+                >
+                  {loggingOut ? t("loggingOut") : t("logOut")}
+                </Button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
