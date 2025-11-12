@@ -7,13 +7,17 @@ import OurServices from "@/components/home/OurServices";
 
 export default function HomePage() {
   return (
-    <div className="md:px-24 py-24 bg-cbg">
-      <Banner />
-      <HelpSection />
-      <OurServices />
-      <GetInvolved />
-      <ContactUs />
-      <Languages />
+    <div className="bg-cbg py-24">
+      <div className="md:px-24">
+        <Banner />
+      </div>
+      <div className="px-6 md:px-24">
+        <HelpSection />
+        <OurServices />
+        <GetInvolved />
+        <ContactUs />
+        <Languages />
+      </div>
     </div>
   );
 }
