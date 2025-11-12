@@ -48,7 +48,7 @@ export default function Navbar() {
   }, [dispatch]);
 
   const navLinks = [
-    { href: `/${locale}`, label: t("home") },
+    { href: `/${locale}`, label: "Home" },
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/services`, label: t("services") },
   ];
