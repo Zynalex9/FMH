@@ -10,8 +10,8 @@ export default function HomePage() {
     <div className="bg-cbg py-24">
       <div className="md:px-24">
         <Banner />
-      </div>
         <HelpSection />
+      </div>
       <div className="px-3 md:px-24">
         <OurServices />
         <GetInvolved />
