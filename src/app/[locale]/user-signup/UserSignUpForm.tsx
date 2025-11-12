@@ -65,24 +65,22 @@ export default function UserSignUpForm() {
 
       toast.success(t("success"));
       reset();
-    } catch (err: any) {
-      console.error("Unexpected signup error:", err);
-      toast.error(t("errors.unexpectedError"));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Unexpected signup error:", err);
+        toast.error(t("errors.unexpectedError"));
+      } else {
+        toast.error(t("errors.unexpectedError"));
+        console.error("Unknown error:", err);
+      }
     }
   };
 
   return (
     <div className="flex justify-center items-center mt-6 min-h-screen bg-gray-50">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="p-8 w-full max-w-md"
-      >
-        <h2 className="text-2xl font-bold text-center mb-2">
-          {t("title")}
-        </h2>
-        <p className="text-cgreen text-center mb-6">
-          {t("subtitle")}
-        </p>
+      <form onSubmit={handleSubmit(onSubmit)} className="p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-2">{t("title")}</h2>
+        <p className="text-cgreen text-center mb-6">{t("subtitle")}</p>
 
         <div className="space-y-6">
           <input

@@ -1,6 +1,6 @@
 "use client";
 
-import { SignUpData, Role } from "@/types/types";
+import { SignUpData } from "@/types/types";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";

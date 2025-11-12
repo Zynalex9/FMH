@@ -34,11 +34,12 @@ export function RequestDetail() {
   const hasUploaded = uploadedFiles.length > 0;
   const isTryingDelivered = status === "delivered";
   const isVolunteer = user?.role === "volunteer";
-  const canMarkDelivered =
-    hasUploaded || request?.status === "delivered" || !isVolunteer;
 
-  const handleUpdate = async () => {
+
+const handleUpdate = async () => {
+  try {
     if (!request || !user) return;
+
     if (
       status === request.status &&
       notes === request.notes &&
@@ -47,6 +48,7 @@ export function RequestDetail() {
       toast.info(t("noChanges"));
       return;
     }
+
     if (isVolunteer && isTryingDelivered && !hasUploaded) {
       toast.error(t("uploadRequiredForDelivered"));
       return;
@@ -57,29 +59,35 @@ export function RequestDetail() {
       return;
     }
 
-    try {
-      let proofUrls: string[] = request.proof_urls || [];
+    let proofUrls: string[] = request.proof_urls || [];
 
-      if (uploadedFiles.length > 0) {
-        const newUrls = await uploadProofs({
-          files: uploadedFiles,
-          requestId: request.id,
-        });
-        proofUrls = [...proofUrls, ...newUrls];
-      }
-
-      updateRequest.mutate({
+    if (uploadedFiles.length > 0) {
+      const newUrls = await uploadProofs({
+        files: uploadedFiles,
         requestId: request.id,
-        status,
-        notes,
-        proofUrls,
       });
-
-      setUploadedFiles([]);
-    } catch (err: any) {
-      console.error(err);
+      proofUrls = [...proofUrls, ...newUrls];
     }
-  };
+
+    updateRequest.mutate({
+      requestId: request.id,
+      status,
+      notes,
+      proofUrls,
+    });
+
+    setUploadedFiles([]);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      toast.error(err.message);
+      console.error("Error updating request:", err.message);
+    } else {
+      toast.error("An unexpected error occurred.");
+      console.error("Unknown error:", err);
+    }
+  }
+};
+
 
   if (isLoading) return <div className="text-center py-10">{t("loading")}</div>;
   if (error) return <div className="text-center text-red-500">{t("error")}</div>;

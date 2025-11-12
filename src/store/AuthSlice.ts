@@ -22,7 +22,7 @@ export interface IUser {
     skills?: string;
     availability?: string;
     is_active?: boolean;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 

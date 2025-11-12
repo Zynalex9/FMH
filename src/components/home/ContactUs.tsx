@@ -1,6 +1,6 @@
 "use client";
 
-import { HeartPulse, Mail, PhoneCall } from "lucide-react";
+import {  Mail, PhoneCall } from "lucide-react";
 import IconBox from "./IconBox";
 import { useTranslations } from "next-intl";
 

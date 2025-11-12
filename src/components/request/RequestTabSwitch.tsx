@@ -5,8 +5,6 @@ interface IProps {
   setTabState: Dispatch<SetStateAction<string>>;
 }
 export const RequestTabSwitch = ({
-  isAdmin,
-  tabState,
   setTabState,
 }: IProps) => {
   return (

@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export function useVolunteerSubmit() {
   return useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data: unknown) => {
       const { error } = await SupabaseClient.from("volunteers").insert([data]);
       if (error) throw error;
     },

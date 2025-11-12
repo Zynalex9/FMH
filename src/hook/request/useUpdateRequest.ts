@@ -9,7 +9,7 @@ import { RootState } from "@/store/store";
 export function useUpdateRequest() {
   const queryClient = useQueryClient();
   const t = useTranslations("response_messages");
-  const { user } = useSelector((state: RootState) => state.user); 
+  const { user } = useSelector((state: RootState) => state.user);
 
   return useMutation({
     mutationFn: async ({
@@ -23,11 +23,14 @@ export function useUpdateRequest() {
       requestId: string;
       proofUrls?: string[];
     }) => {
-
       const isVolunteer = user?.role === "volunteer";
       const isDelivered = status === "delivered";
 
-      if (isVolunteer && isDelivered && (!proofUrls || proofUrls.length === 0)) {
+      if (
+        isVolunteer &&
+        isDelivered &&
+        (!proofUrls || proofUrls.length === 0)
+      ) {
         throw new Error("PROOF_REQUIRED_FOR_DELIVERED");
       }
 
@@ -41,17 +44,25 @@ export function useUpdateRequest() {
       });
     },
 
-    onError: (error: any) => {
-      if (error.message === "PROOF_REQUIRED_FOR_DELIVERED") {
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        error.message === "PROOF_REQUIRED_FOR_DELIVERED"
+      ) {
         toast.error(t("uploadRequiredForDelivered"));
         return;
       }
 
-      if (error.code === "PGRST116" || error.code === "42501") {
-        toast.error(t("unauthorized"));
-      } else {
-        toast.error(t("unexpected_error"));
+      // Handle errors with a `code` property (like Supabase/PostgREST errors)
+      if (typeof error === "object" && error !== null && "code" in error) {
+        const errWithCode = error as { code: string };
+        if (errWithCode.code === "PGRST116" || errWithCode.code === "42501") {
+          toast.error(t("unauthorized"));
+          return;
+        }
       }
+
+      toast.error(t("unexpected_error"));
     },
   });
 }

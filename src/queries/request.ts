@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
 import { IRequest } from "@/types/types";
-import { useTranslations } from "next-intl";
 
 export const getRequests = async (): Promise<IRequest[]> => {
   const { data, error } = await supabase.from("requests").select(`

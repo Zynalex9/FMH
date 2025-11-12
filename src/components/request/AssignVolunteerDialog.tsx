@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, MouseEvent } from "react";
 import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabaseClient";
 import { debounce } from "lodash";
@@ -81,7 +81,7 @@ export default function AssignVolunteerDialog({
         <Button
           variant="outline"
           className="bg-sgreen text-cgreen hover:bg-sgreen/90 border-0"
-          onClick={(e: any) => e.stopPropagation()}
+          onClick={(e: MouseEvent<HTMLButtonElement>) => e.stopPropagation()}
         >
           {t("assignButton")}
         </Button>

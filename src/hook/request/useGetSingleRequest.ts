@@ -1,4 +1,4 @@
-import { getRequest, getRequests } from "@/queries/request";
+import { getRequest } from "@/queries/request";
 import { IRequest } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 

@@ -16,10 +16,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true, data });
-  } catch (err: any) {
-    console.error("API error:", err);
+  } catch (err: unknown) {
+    const message = (err as Error).message;
     return NextResponse.json(
-      { success: false, error: err.message },
+      { success: false, error: message },
       { status: 500 }
     );
   }
