@@ -18,7 +18,9 @@ const AUTH_ROUTES = [
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const { pathname } = req.nextUrl;
-
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/en", req.url));
+  }
   const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
   const isAuthRoute = AUTH_ROUTES.some((p) => pathname.startsWith(p));
 
