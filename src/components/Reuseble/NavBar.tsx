@@ -48,18 +48,21 @@ export default function Navbar() {
   }, [dispatch]);
 
   const navLinks = [
+    { href: `/${locale}`, label: t("home") },
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/services`, label: t("services") },
-    { href: `/${locale}/fmh`, label: "FMH" }, 
   ];
 
   return (
     <nav className="bg-cbg fixed top-0 left-0 w-full z-50 border-b border-b-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center gap-2">
-            <span className="font-semibold text-lg text-gray-900">{t("logo")}</span>
+          {/* Left Side — Logo / FMH */}
+          <Link
+            href={`/${locale}`}
+            className="flex items-center gap-2 font-bold text-xl text-cgreen tracking-wide"
+          >
+            FMH
           </Link>
 
           {/* Desktop Navigation */}
@@ -176,20 +179,14 @@ export default function Navbar() {
             ) : (
               <>
                 {user.role === "admin" && (
-                  <Button
-                    asChild
-                    className="bg-cgreen hover:bg-cgreen/90 w-full"
-                  >
+                  <Button asChild className="bg-cgreen hover:bg-cgreen/90 w-full">
                     <Link href={`/${locale}/request`} onClick={toggleMenu}>
                       {t("adminDashboard")}
                     </Link>
                   </Button>
                 )}
                 {user.role === "volunteer" && (
-                  <Button
-                    asChild
-                    className="bg-cgreen hover:bg-cgreen/90 w-full"
-                  >
+                  <Button asChild className="bg-cgreen hover:bg-cgreen/90 w-full">
                     <Link
                       href={`/${locale}/volunteer/dashboard`}
                       onClick={toggleMenu}
