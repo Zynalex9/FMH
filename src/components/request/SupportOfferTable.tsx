@@ -79,21 +79,21 @@ export function SupportOffersTable() {
   ];
 
   return (
-    <div className="py-10 " >
-      {/* Filters */}
-      <div className="flex gap-4 pb-6 flex-wrap">
+    <div className="py-10 px-4 md:px-8">
+      {/* 🔍 Filters */}
+      <div className="flex flex-wrap gap-3 pb-6">
         {filters.map(({ label, options, value, setValue }) => (
           <DropdownMenu key={label}>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="gap-2 border-0 bg-sgreen rounded-full text-black"
+                className="gap-2 border-0 bg-sgreen rounded-full text-black text-sm md:text-base"
               >
                 {label}
                 <span className="ml-1">&#9662;</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent align="start">
               <DropdownMenuItem onClick={() => setValue(null)}>
                 All
               </DropdownMenuItem>
@@ -111,13 +111,12 @@ export function SupportOffersTable() {
         ))}
       </div>
 
-      {/* Table */}
-      <div className="border rounded-lg overflow-hidden bg-cbg">
+      {/* 📊 Table */}
+      <div className="border rounded-lg overflow-x-auto bg-cbg">
         {isLoading ? (
-          <div className="p-6 space-y-3">
+          <div className="p-6 space-y-3 min-w-[600px]">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="flex justify-between gap-4">
-                <Skeleton className="h-6 w-1/5" />
                 <Skeleton className="h-6 w-1/5" />
                 <Skeleton className="h-6 w-1/5" />
                 <Skeleton className="h-6 w-1/5" />
@@ -127,54 +126,57 @@ export function SupportOffersTable() {
             ))}
           </div>
         ) : error ? (
-          <div className="p-6 text-red-600">
+          <div className="p-6 text-red-600 min-w-[600px]">
             Error loading support offers: {error.message}
           </div>
         ) : (
           <>
-            <Table>
-              <TableHeader className="bg-cbg border-0">
-                <TableRow className="border-0">
-                  <TableHead className="text-black">Name</TableHead>
-                  <TableHead className="text-cgreen">Contact Info</TableHead>
-                  <TableHead className="text-cgreen">Donation Type</TableHead>
-                  <TableHead className="text-cgreen">Availability</TableHead>
-                  <TableHead className="text-cgreen">For Events</TableHead>
-                  <TableHead className="text-cgreen">For Outreach</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredOffers.map((offer: ISupportOffer) => (
-                  <TableRow
-                    key={offer.id}
-                    className="cursor-pointer hover:bg-sgreen/40 transition-colors border-b border-gray-200 last:border-b-0"
-                  >
-                    <TableCell className="py-4 text-black font-medium capitalize">
-                      {capitalizeWords(offer.full_name)}
-                    </TableCell>
-                    <TableCell className="text-cgreen py-4">
-                      {offer.contact_information}
-                    </TableCell>
-                    <TableCell className="text-cgreen py-4 capitalize">
-                      {FIXED_DONATION_TYPES.includes(
-                        capitalizeWords(offer.donation_type)
-                      )
-                        ? capitalizeWords(offer.donation_type)
-                        : "Other"}
-                    </TableCell>
-                    <TableCell className="text-cgreen py-4 capitalize">
-                      {capitalizeWords(offer.availability)}
-                    </TableCell>
-                    <TableCell className="py-4 capitalize">
-                      {offer.for_events ? "Yes" : "No"}
-                    </TableCell>
-                    <TableCell className="py-4 capitalize">
-                      {offer.for_outreachs ? "Yes" : "No"}
-                    </TableCell>
+            <div className="min-w-[800px]">
+              <Table>
+                <TableHeader className="bg-cbg border-0">
+                  <TableRow className="border-0">
+                    <TableHead className="text-black">Name</TableHead>
+                    <TableHead className="text-cgreen">Contact Info</TableHead>
+                    <TableHead className="text-cgreen">Donation Type</TableHead>
+                    <TableHead className="text-cgreen">Availability</TableHead>
+                    <TableHead className="text-cgreen">For Events</TableHead>
+                    <TableHead className="text-cgreen">For Outreach</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+
+                <TableBody>
+                  {filteredOffers.map((offer: ISupportOffer) => (
+                    <TableRow
+                      key={offer.id}
+                      className="cursor-pointer hover:bg-sgreen/40 transition-colors border-b border-gray-200 last:border-b-0"
+                    >
+                      <TableCell className="py-3 text-black font-medium capitalize">
+                        {capitalizeWords(offer.full_name)}
+                      </TableCell>
+                      <TableCell className="text-cgreen py-3 break-words">
+                        {offer.contact_information}
+                      </TableCell>
+                      <TableCell className="text-cgreen py-3 capitalize">
+                        {FIXED_DONATION_TYPES.includes(
+                          capitalizeWords(offer.donation_type)
+                        )
+                          ? capitalizeWords(offer.donation_type)
+                          : "Other"}
+                      </TableCell>
+                      <TableCell className="text-cgreen py-3 capitalize">
+                        {capitalizeWords(offer.availability)}
+                      </TableCell>
+                      <TableCell className="py-3 capitalize">
+                        {offer.for_events ? "Yes" : "No"}
+                      </TableCell>
+                      <TableCell className="py-3 capitalize">
+                        {offer.for_outreachs ? "Yes" : "No"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
 
             {filteredOffers.length === 0 && (
               <div className="text-center py-8 text-muted-foreground">
