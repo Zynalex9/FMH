@@ -6,20 +6,23 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 type VolunteerFormData = {
   full_name: string;
   contact_info: string;
   password?: string;
-  skills?: string;
   availability?: string;
+  volunteer_options?: string[];
 };
 
 export default function VolunteerForm() {
   const t = useTranslations("VolunteerForm");
   const { register, handleSubmit, reset } = useForm<VolunteerFormData>();
-  const submitVolunteer = useVolunteerSubmit();
+  const [loading, setLoading] = useState(false)
   const [isOnline, setIsOnline] = useState(true);
+  const { locale } = useParams();
 
   useEffect(() => {
     const updateStatus = () => setIsOnline(navigator.onLine);
@@ -32,54 +35,62 @@ export default function VolunteerForm() {
     };
   }, []);
 
-const onSubmit = async (data: VolunteerFormData) => {
-  const isEmail = data.contact_info.includes("@");
-  let signUpResponse;
-
-  if (isEmail) {
-
-    signUpResponse = await supabase.auth.signUp({
-      email: data.contact_info,
-      password: data.password,
-      options: {
-        data: {
-          full_name: data.full_name,
-          phone: "", 
-          role: "volunteer",
-          skills: data.skills || "",
-          availability: data.availability || "",
-          is_active: true,
+  const onSubmit = async (data: VolunteerFormData) => {
+    setLoading(true)
+    const isEmail = data.contact_info.includes("@");
+    const volunteerOptions = data.volunteer_options || [];
+    let signUpResponse;
+    if (isEmail) {
+      const signUpData = {
+        email: data.contact_info,
+        password: data.password,
+        options: {
+          data: {
+            full_name: data.full_name,
+            phone: "",
+            role: "volunteer",
+            availability: data.availability || "",
+            volunteer_options: volunteerOptions,
+            is_active: true,
+          },
         },
-      },
-    });
-  } else {
-    signUpResponse = await supabase.auth.signUp({
-      phone: data.contact_info,
-      password: data.password,
-      options: {
-        data: {
-          full_name: data.full_name,
-          email: "", 
-          role: "volunteer",
-          skills: data.skills || "",
-          availability: data.availability || "",
-          is_active: true,
+      }
+      console.log(signUpData)
+      signUpResponse = await supabase.auth.signUp(signUpData);
+    } else {
+      const signUpData = {
+        phone: data.contact_info,
+        password: data.password,
+        options: {
+          data: {
+            full_name: data.full_name,
+            email: "",
+            role: "volunteer",
+            availability: data.availability || "",
+            volunteer_options: volunteerOptions,
+            is_active: true,
+          },
         },
-      },
-    });
-  }
+      }
+      console.log(signUpData)
+      signUpResponse = await supabase.auth.signUp(signUpData);
+    }
 
-  const { error } = signUpResponse;
+    const { error } = signUpResponse;
+    if (error) {
+      toast.error(error.message || "Signup failed");
+      console.error("Signup error:", error);
+      setLoading(false)
 
-  if (error) {
-    toast.error(error.message || "Signup failed");
-    console.error("Signup error:", error);
-    return;
-  }
+      return;
+    }
 
-  toast.success("Thank you for requesting to help FMH strengthen and connect communities! We’ll be contacting you soon");
-  reset();
-};
+    toast.success(
+      "Thank you for requesting to help FMH strengthen and connect communities! We’ll be contacting you soon"
+    );
+    setLoading(false)
+    reset();
+  };
 
   return (
     <div className="max-w-md mx-auto p-6 md:p-8 mt-8 mb-6">
@@ -88,17 +99,13 @@ const onSubmit = async (data: VolunteerFormData) => {
       </h1>
 
       {!isOnline && (
-        <p className="text-center text-sm text-cgreen mb-3">
-          {t("offlineNotice")}
-        </p>
+        <p className="text-center text-sm text-cgreen mb-3">{t("offlineNotice")}</p>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* Full Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            {t("fullNameLabel")}
-          </label>
+          <label className="block text-sm font-medium text-gray-700">{t("fullNameLabel")}</label>
           <input
             type="text"
             placeholder={t("fullNamePlaceholder")}
@@ -109,9 +116,7 @@ const onSubmit = async (data: VolunteerFormData) => {
 
         {/* Contact Info */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            {t("contactLabel")}
-          </label>
+          <label className="block text-sm font-medium text-gray-700">{t("contactLabel")}</label>
           <input
             type="text"
             placeholder={t("contactPlaceholder")}
@@ -119,11 +124,10 @@ const onSubmit = async (data: VolunteerFormData) => {
             className="mt-1 w-full px-3 py-2 bg-sgreen rounded-md outline-none focus:ring-2 focus:ring-cgreen"
           />
         </div>
+
         {/* Password */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            {t("passwordLabel")}
-          </label>
+          <label className="block text-sm font-medium text-gray-700">{t("passwordLabel")}</label>
           <input
             type="password"
             placeholder={t("passwordPlaceholder")}
@@ -131,23 +135,28 @@ const onSubmit = async (data: VolunteerFormData) => {
             className="mt-1 w-full px-3 py-2 bg-sgreen rounded-md outline-none focus:ring-2 focus:ring-cgreen"
           />
         </div>
-        {/* Skills */}
+
+        {/* Volunteer Options - stacked vertically */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            {t("skillsLabel")}
-          </label>
-          <textarea
-            placeholder={t("skillsPlaceholder")}
-            {...register("skills")}
-            className="mt-1 w-full px-3 py-2 bg-sgreen rounded-md outline-none h-24 resize-none focus:ring-2 focus:ring-cgreen"
-          />
+          <label className="block text-sm font-medium text-gray-700">{t("skillsLabel")}</label>
+          <div className="mt-2 flex flex-col space-y-2">
+            {["At events", "During outreach", "Deliveries", "All"].map((option) => (
+              <label key={option} className="inline-flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  value={option}
+                  {...register("volunteer_options")}
+                  className="w-4 h-4 text-cgreen border-gray-300 rounded focus:ring-cgreen"
+                />
+                <span className="text-gray-700">{option}</span>
+              </label>
+            ))}
+          </div>
         </div>
 
         {/* Availability */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            {t("availabilityLabel")}
-          </label>
+          <label className="block text-sm font-medium text-gray-700">{t("availabilityLabel")}</label>
           <textarea
             placeholder={t("availabilityPlaceholder")}
             {...register("availability")}
@@ -155,21 +164,22 @@ const onSubmit = async (data: VolunteerFormData) => {
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
           type="submit"
-          disabled={submitVolunteer.isPending || !isOnline}
-          className={`w-full py-2 rounded-md text-white font-medium transition ${
-            isOnline ? "bg-cgreen hover:bg-cgreen/90" : "bg-gray-400"
-          }`}
+          disabled={loading || !isOnline}
+          className={`w-full py-2 rounded-md text-white font-medium transition ${isOnline ? "bg-cgreen hover:bg-cgreen/90" : "bg-gray-400"
+            }`}
         >
-          {submitVolunteer.isPending
-            ? t("submitting")
-            : isOnline
-            ? t("submit")
-            : t("offline")}
+          {loading ? t("submitting") : isOnline ? t("submit") : t("offline")}
         </button>
       </form>
+
+      <p className="text-center mt-4">
+        <Link href={`/${locale}/signin`} className="text-cgreen underline text-sm">
+          Already a volunteer? Login
+        </Link>
+      </p>
 
       <p className="text-center text-xs text-gray-500 mt-6">
         © 2024 Community Connect. {t("rightsReserved")}
