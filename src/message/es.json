@@ -130,6 +130,7 @@
   "SupportOffer": {
     "title": "Oferta de apoyo",
     "full-name": "Nombre completo",
+    "passwordLabel": "Contraseña",
     "full-name-placeholder": "Ingrese su nombre completo",
     "contact-info": "Información de contacto",
     "contact-info-placeholder": "Correo electrónico o número de teléfono",
@@ -211,24 +212,24 @@
     "phoneTitle": "Teléfono"
   },
   "AboutPage": {
-    "title": "Sobre Nosotros",
-    "subtitle": "Conectando vecinos. Empoderando comunidades. Entregando esperanza.",
+    "title": "Acerca de FMH – For My Health",
+    "subtitle": "Brindando dignidad, restaurando la esperanza y apoyando la salud diaria.",
     "missionTitle": "Nuestra Misión",
-    "missionText": "Creemos que nadie debería enfrentar las dificultades solo. Nuestra plataforma conecta a quienes necesitan apoyo con quienes están listos para ayudar — a través de alimentos, ropa, ayuda médica o un simple acto de bondad.",
+    "missionText": "En FMH – For My Health, nuestra misión es Entregar. Restaurar. A diario.\n\nAtendemos a niños, familias y personas mayores en situaciones difíciles proporcionando acceso constante a alimentos, cuidado de higiene y artículos esenciales. A través de entregas directas y un acompañamiento compasivo, ayudamos a fortalecer las comunidades desfavorecidas en Little Rock y más allá.\n\nCreemos que la verdadera salud significa más que medicina. Es tener dignidad en cada momento. Mediante un seguimiento constante y la compasión, FMH proporciona alimentos, ropa, kits de higiene, suministros educativos y artículos de temporada — llegando a las personas donde se encuentran y restaurando la fortaleza una entrega a la vez.",
     "values": {
-      "empathyTitle": "Empatía Primero",
-      "empathyText": "Cada solicitud representa una necesidad humana real. Abordamos cada una con cuidado y compasión.",
-      "communityTitle": "Poder Comunitario",
-      "communityText": "Fortalecemos las comunidades empoderando a las personas para que se apoyen mutuamente.",
-      "transparencyTitle": "Transparencia",
-      "transparencyText": "Cada solicitud y cada entrega se rastrean abiertamente para garantizar confianza y responsabilidad.",
-      "localImpactTitle": "Impacto Local",
-      "localImpactText": "Nos enfocamos en marcar la diferencia justo donde más importa — en tu vecindario."
+      "empathyTitle": "Entregar",
+      "empathyText": "FMH se encuentra con las personas donde están — en las calles, en refugios o en sus puertas.",
+      "communityTitle": "Restaurar",
+      "communityText": "La verdadera salud significa restaurar la dignidad, la estabilidad y la esperanza — no solo satisfacer necesidades.",
+      "transparencyTitle": "A diario",
+      "transparencyText": "La pobreza y el hambre no descansan — y la compasión tampoco.",
+      "localImpactTitle": "Impacto Comunitario",
+      "localImpactText": "Apoyamos a niños, familias y personas mayores en Little Rock mediante acceso a alimentos, kits de higiene y actividades estacionales de alcance comunitario."
     },
     "storyTitle": "Nuestra Historia",
-    "storyText": "Lo que comenzó como una pequeña iniciativa en tiempos de crisis se ha convertido en una plataforma que conecta a cientos de voluntarios y familias en múltiples zonas. Juntos, hemos transformado la compasión en acción — una solicitud a la vez.",
+    "storyText": "FMH – For My Health nació de una verdad simple: la salud es más que medicina. Es tener comida en la mesa, ropa limpia, calor en invierno y dignidad en cada momento.\n\nFundada en Little Rock, Arkansas, por Sy’Viceeaa Hall, FMH comenzó como un pequeño esfuerzo de campo ayudando a familias que quedaban fuera del sistema — madres que se saltaban comidas para que sus hijos pudieran comer, personas mayores eligiendo entre medicinas y calefacción, y vecinos sin hogar frecuentemente ignorados.\n\nLo que comenzó como entregas personales de alimentos y kits de higiene se convirtió en un sistema comunitario estructurado basado en tres palabras: Entregar. Restaurar. A diario. Estas palabras se convirtieron en más que un lema — se convirtieron en un modelo de compasión en acción.\n\nHoy, FMH apoya a cientos de personas en Arkansas a través del acceso a alimentos, kits de higiene, suministros educativos y la iniciativa anual de invierno \"Warm Hands = Warm Hearts\". A medida que FMH crece, su objetivo es alcanzar a miles, restaurando la esperanza una entrega a la vez.",
     "joinTitle": "Únete a Nosotros",
-    "joinText": "Ya sea que quieras ser voluntario, contribuir o solicitar ayuda — tu participación fortalece nuestra comunidad."
+    "joinText": "Ya sea que desees ser voluntario, contribuir o solicitar ayuda — eres parte de restaurar la dignidad, la salud y la esperanza para las familias en todo Arkansas."
   },
   "ServicesPage": {
     "header": {
@@ -345,7 +346,7 @@
     "errorToast": "Error al asignar la solicitud"
   },
   "RequestDetail": {
-"noChanges": "No hay cambios para guardar.",
+    "noChanges": "No hay cambios para guardar.",
     "uploadRequiredForDelivered": "Debes subir al menos una foto para marcar como Entregado.",
     "adminOnlyAfterDelivered": "Esta solicitud ya está Entregada. Solo un administrador puede editarla.",
     "saving": "Guardando…",
@@ -371,8 +372,8 @@
       "call": "Llamar"
     },
     "UploadSection": {
-   "uploadPhoto": "Subir Foto de Prueba",
-    "requiredForDelivered": "Requerido para estado Entregado"
+      "uploadPhoto": "Subir Foto de Prueba",
+      "requiredForDelivered": "Requerido para estado Entregado"
     },
     "NotesSection": {
       "addNotes": "Agregar Notas",
@@ -403,7 +404,23 @@
   "response_messages": {
     "unauthorized": "No estás autorizado para realizar esta acción. Por favor, contacta al administrador.",
     "invalid_status": "Solo puedes establecer el estado en « En camino » o « Entregado ».",
-  "request_updated": "Solicitud actualizada con éxito",
-  "unexpected_error": "Ocurrió un error inesperado"
+    "request_updated": "Solicitud actualizada con éxito",
+    "unexpected_error": "Ocurrió un error inesperado"
+  },
+  "PrivacyPage": {
+    "title": "Política de Privacidad",
+    "paragraph1": "Recopilamos información de contacto únicamente para coordinar entregas. Todos los datos personales se cifran, se almacenan de manera segura y nunca se venden bajo ninguna circunstancia.",
+    "paragraph2": "FMH – For My Health opera con un modelo de cero reventa. El 100 % de los suministros donados y la información recopilada apoyan la labor directa en la comunidad en Little Rock y áreas circundantes."
+  },
+  "TermsPage": {
+    "title": "Términos de Servicio",
+    "paragraph1": "FMH – For My Health es una organización sin fines de lucro 501(c)(3) que brinda servicios de apoyo comunitario. Al usar este sitio, usted acepta estos términos, incluida la recopilación de información de contacto básica necesaria para coordinar entregas y la comunicación con voluntarios.",
+    "paragraph2": "Todas las donaciones apoyan programas de alcance comunitario directo, incluidos eventos, entregas e iniciativas estacionales. FMH mantiene un modelo de cero reventa: el 100 % de los suministros donados van directamente a las familias."
+  },
+  "Footer": {
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "description": "FMH – For My Health · Entregar. Restaurar. A diario. · Sirviendo a Little Rock y comunidades cercanas.",
+    "copyright": "© 2025 Community Connect. Todos los derechos reservados."
   }
 }

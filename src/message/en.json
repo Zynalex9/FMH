@@ -147,6 +147,7 @@
     "availability": "Comments",
     "availability-placeholder": "Write your availability",
     "submit": "Submit",
+    "passwordLabel":"Password",
     "submitting": "Submitting...",
     "online-msg": "You're online — sending now.",
     "offline-msg": "You're offline — we’ll send it later.",
@@ -407,5 +408,21 @@
     "invalid_status": "You can only set the status to 'En route' or 'Delivered'.",
     "request_updated": "Request updated successfully",
     "unexpected_error": "An unexpected error occurred"
+  },
+  "PrivacyPage": {
+    "title": "Politique de Confidentialité",
+    "paragraph1": "Nous collectons les informations de contact uniquement pour coordonner les livraisons. Toutes les données personnelles sont chiffrées, stockées en toute sécurité et ne sont jamais vendues sous aucune circonstance.",
+    "paragraph2": "FMH – For My Health fonctionne selon un modèle sans revente. 100 % des fournitures et informations collectées soutiennent directement les actions communautaires à Little Rock et dans les environs."
+  },
+  "TermsPage": {
+    "title": "Terms of Service",
+    "paragraph1": "FMH – For My Health is a 501(c)(3) nonprofit providing community outreach services. By using this site, you agree to these terms, including the collection of basic contact information necessary to coordinate deliveries and volunteer communication.",
+    "paragraph2": "All donations support direct community outreach programs, including events, deliveries, and seasonal initiatives. FMH maintains a zero-resale model — 100% of donated supplies go directly to families."
+  },
+  "Footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "description": "FMH – For My Health · Deliver. Restore. Daily. · Serving Little Rock and surrounding communities.",
+    "copyright": "© 2025 Community Connect. All rights reserved."
   }
 }

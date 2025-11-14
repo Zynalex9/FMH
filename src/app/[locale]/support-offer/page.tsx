@@ -177,7 +177,7 @@ export default function SupportOfferPage() {
 
           {!user && (
             <div>
-              <label className="block mb-1">{t("password")}</label>
+              <label className="block mb-1">{t("passwordLabel")}</label>
               <input
                 type="password"
                 {...register("password", { required: true })}

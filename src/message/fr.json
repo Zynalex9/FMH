@@ -134,6 +134,7 @@
     "contact-info": "Informations de contact",
     "contact-info-placeholder": "Email ou numéro de téléphone",
     "donation-type": "Type de don",
+    "passwordLabel": "Mot de passe",
     "select": "Sélectionner",
     "money": "Argent",
     "food": "Nourriture",
@@ -211,24 +212,24 @@
     "phoneTitle": "Téléphone"
   },
   "AboutPage": {
-    "title": "À Propos de Nous",
-    "subtitle": "Relier les voisins. Renforcer les communautés. Apporter de l'espoir.",
+    "title": "À propos de FMH – For My Health",
+    "subtitle": "Redonner dignité, restaurer l'espoir et soutenir la santé quotidienne.",
     "missionTitle": "Notre Mission",
-    "missionText": "Nous croyons que personne ne devrait affronter les difficultés seul. Notre plateforme comble le fossé entre ceux qui ont besoin de soutien et ceux qui sont prêts à aider — par la nourriture, les vêtements, l’aide médicale ou un simple acte de gentillesse.",
+    "missionText": "Chez FMH – For My Health, notre mission est de livrer. Restaurer. Au quotidien.\n\nNous aidons les enfants, les familles et les personnes âgées en difficulté en leur fournissant un accès constant à la nourriture, aux soins d'hygiène et aux articles essentiels. Grâce à des livraisons directes et un accompagnement bienveillant, nous contribuons à renforcer les communautés défavorisées de Little Rock et au-delà.\n\nNous croyons que la vraie santé signifie plus que la médecine. C'est avoir de la dignité à chaque instant. Grâce à un suivi constant et à la compassion, FMH fournit de la nourriture, des vêtements, des kits d'hygiène, des fournitures éducatives et des articles saisonniers — en rencontrant les gens là où ils se trouvent et en restaurant la force une livraison à la fois.",
     "values": {
-      "empathyTitle": "L'Empathie Avant Tout",
-      "empathyText": "Chaque demande représente un besoin humain réel. Nous abordons chacune avec soin et compassion.",
-      "communityTitle": "Force Communautaire",
-      "communityText": "Nous renforçons les communautés en donnant aux individus les moyens de s'entraider.",
-      "transparencyTitle": "Transparence",
-      "transparencyText": "Chaque demande et chaque livraison sont suivies ouvertement pour assurer confiance et responsabilité.",
-      "localImpactTitle": "Impact Local",
-      "localImpactText": "Nous nous concentrons sur la différence là où elle compte le plus — dans votre quartier."
+      "empathyTitle": "Livrer",
+      "empathyText": "FMH rencontre les gens là où ils se trouvent — dans la rue, dans les refuges ou à leur porte.",
+      "communityTitle": "Restaurer",
+      "communityText": "La vraie santé signifie restaurer la dignité, la stabilité et l'espoir — pas seulement répondre aux besoins.",
+      "transparencyTitle": "Au quotidien",
+      "transparencyText": "La pauvreté et la faim ne prennent pas de pause — et la compassion non plus.",
+      "localImpactTitle": "Impact Communautaire",
+      "localImpactText": "Nous aidons les enfants, les familles et les personnes âgées de Little Rock grâce à l'accès à la nourriture, au soutien en hygiène et aux initiatives saisonnières."
     },
     "storyTitle": "Notre Histoire",
-    "storyText": "Ce qui a commencé comme une petite initiative en période de crise est devenu une plateforme reliant des centaines de bénévoles et de familles à travers plusieurs zones. Ensemble, nous avons transformé la compassion en action — une demande à la fois.",
-    "joinTitle": "Rejoignez-Nous",
-    "joinText": "Que vous souhaitiez faire du bénévolat, contribuer ou demander de l’aide — votre participation renforce notre communauté."
+    "storyText": "FMH – For My Health est né d'une vérité simple : la santé est plus que la médecine. C'est avoir de la nourriture sur la table, des vêtements propres, de la chaleur en hiver et de la dignité à chaque instant.\n\nFondée à Little Rock, Arkansas, par Sy’Viceeaa Hall, FMH a commencé comme un petit effort de terrain pour aider les familles oubliées — les mères qui sautaient des repas pour que leurs enfants puissent manger, les personnes âgées choisissant entre médicaments et chauffage, et les voisins sans abri souvent ignorés.\n\nCe qui a commencé comme des livraisons personnelles de nourriture et de kits d'hygiène est devenu un système communautaire structuré basé sur trois mots : Livrer. Restaurer. Au quotidien. Ces mots sont devenus plus qu'un slogan — ils sont un modèle de compassion en action.\n\nAujourd'hui, FMH soutient des centaines d'Arkansans grâce à l'accès à la nourriture, aux kits d'hygiène, aux fournitures éducatives et à l'initiative hivernale annuelle « Warm Hands = Warm Hearts ». Alors que FMH se développe, son objectif est d'atteindre des milliers de personnes, restaurant l'espoir une livraison à la fois.",
+    "joinTitle": "Rejoignez-nous",
+    "joinText": "Que vous souhaitiez faire du bénévolat, contribuer ou demander de l'aide — vous faites partie de la restauration de la dignité, de la santé et de l'espoir pour les familles à travers l'Arkansas."
   },
   "ServicesPage": {
     "header": {
@@ -405,5 +406,21 @@
     "invalid_status": "Vous pouvez uniquement définir le statut sur « En route » ou « Livré ».",
     "request_updated": "La demande a été mise à jour avec succès",
     "unexpected_error": "Une erreur inattendue est survenue"
+  },
+  "PrivacyPage": {
+    "title": "Politique de Confidentialité",
+    "paragraph1": "Nous collectons les informations de contact uniquement pour coordonner les livraisons. Toutes les données personnelles sont chiffrées, stockées en toute sécurité et ne sont jamais vendues sous aucune circonstance.",
+    "paragraph2": "FMH – For My Health fonctionne selon un modèle sans revente. 100 % des fournitures et informations collectées soutiennent directement les actions communautaires à Little Rock et dans les environs."
+  },
+  "TermsPage": {
+    "title": "Conditions d'utilisation",
+    "paragraph1": "FMH – For My Health est une organisation à but non lucratif 501(c)(3) fournissant des services de soutien communautaire. En utilisant ce site, vous acceptez ces conditions, y compris la collecte des informations de contact de base nécessaires pour coordonner les livraisons et la communication avec les bénévoles.",
+    "paragraph2": "Tous les dons soutiennent les programmes de soutien communautaire directs, y compris les événements, les livraisons et les initiatives saisonnières. FMH maintient un modèle de revente zéro — 100 % des fournitures données vont directement aux familles."
+  },
+  "Footer": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "description": "FMH – For My Health · Livrer. Restaurer. Au quotidien. · Servant Little Rock et les communautés environnantes.",
+    "copyright": "© 2025 Community Connect. Tous droits réservés."
   }
 }
