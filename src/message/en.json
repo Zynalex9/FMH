@@ -129,12 +129,12 @@
     "error": "❌ Something went wrong. Please try again."
   },
   "SupportOffer": {
-    "title": "Offer Support",
+    "title": "How do you want to help?",
     "full-name": "Full Name",
     "full-name-placeholder": "Enter your name",
     "contact-info": "Contact Info",
     "contact-info-placeholder": "Email or Phone",
-    "donation-type": "How do you want to help?",
+    "donation-type": "What would you like to donate?",
     "select": "Choose one",
     "money": "Money",
     "food": "Food",
@@ -144,7 +144,7 @@
     "volunteer-options": "Volunteer Options",
     "volunteer-events": "Help at events",
     "volunteer-outreach": "Help in outreach",
-    "availability": "When can you help?",
+    "availability": "Comments",
     "availability-placeholder": "Write your availability",
     "submit": "Submit",
     "submitting": "Submitting...",
@@ -254,7 +254,7 @@
         "button": "Track Deliveries"
       },
       "volunteer": {
-        "title": "Volunteer Coordination",
+        "title": "Volunteer",
         "description": "Volunteers stay updated with active requests and statuses, enabling smooth coordination and faster help.",
         "button": "Join as Volunteer"
       },

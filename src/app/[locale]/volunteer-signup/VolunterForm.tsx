@@ -77,7 +77,7 @@ const onSubmit = async (data: VolunteerFormData) => {
     return;
   }
 
-  toast.success("Account created successfully!");
+  toast.success("Thank you for requesting to help FMH strengthen and connect communities! We’ll be contacting you soon");
   reset();
 };
 

@@ -17,7 +17,7 @@ export const useCreateSupportOffer = () => {
         toast.error(error.message);
         throw error;
       }
-      toast.success("Support offer created successfully!");
+      toast.success("Thank you for requesting to help FMH strengthen and connect communities! We’ll be contacting you soon");
       return true;
     },
   });
