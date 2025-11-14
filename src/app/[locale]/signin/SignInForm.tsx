@@ -81,9 +81,7 @@ export default function SignInForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-lg rounded-2xl p-6 w-96 space-y-4"
       >
-        <h2 className="text-2xl font-semibold text-center mb-2">
-          {t("title")}
-        </h2>
+        
 
         {/* Email or Phone */}
         <div>

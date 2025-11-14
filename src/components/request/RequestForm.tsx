@@ -18,8 +18,7 @@ interface FormData {
   priority: string;
   need_type: string;
   need_other?: string;
-  zone: string;
-  zone_other?: string;
+  zone: string; // still named zone internally
   source: string;
   source_other?: string;
 }
@@ -36,7 +35,6 @@ const RequestForm = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const { mutate } = useCreateRequest();
 
-  const selectedZone = watch("zone");
   const selectedNeed = watch("need_type");
   const selectedSource = watch("source");
 
@@ -59,10 +57,7 @@ const RequestForm = () => {
         data.need_type === "other" && data.need_other
           ? data.need_other
           : data.need_type.toLowerCase(),
-      zone:
-        data.zone === "other" && data.zone_other
-          ? data.zone_other
-          : data.zone.toLowerCase(),
+      zone: data.zone, 
       source:
         data.source === "other" && data.source_other
           ? data.source_other
@@ -197,6 +192,7 @@ const RequestForm = () => {
             {...register("contact_email")}
           />
         </div>
+
         {/* Priority */}
         <div className="space-y-1">
           <label
@@ -248,33 +244,24 @@ const RequestForm = () => {
           )}
         </div>
 
-        {/* Zone */}
+        {/* Zipcode (previously Zone) */}
         <div className="space-y-1">
           <label
             htmlFor="zone"
             className="block text-sm font-medium text-gray-800"
           >
-            {t("zone")} <span className="text-red-500">*</span>
+            {t("zipcode")} <span className="text-red-500">*</span>
           </label>
-          <select
+          <input
             id="zone"
+            type="text"
+            placeholder={t("zipcode-placeholder") || "Enter Zipcode"}
             className="w-full bg-sgreen px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-cgreen/70"
             {...register("zone", { required: true })}
-          >
-            <option value="">{t("select")}</option>
-            <option value="north">{t("north")}</option>
-            <option value="south">{t("south")}</option>
-            <option value="other">Other</option>
-          </select>
-          {selectedZone === "other" && (
-            <input
-              type="text"
-              placeholder="Please specify"
-              className="w-full mt-2 bg-sgreen px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-cgreen/70"
-              {...register("zone_other")}
-            />
-          )}
+          />
         </div>
+
+        {/* Source */}
         <div className="space-y-1">
           <label
             htmlFor="source"
@@ -294,7 +281,7 @@ const RequestForm = () => {
             <option value="referral">Referral</option>
             <option value="other">Other</option>
           </select>
-          {selectedSource === "other" && (
+          {watch("source") === "other" && (
             <input
               type="text"
               placeholder="Please specify"
@@ -304,12 +291,22 @@ const RequestForm = () => {
           )}
         </div>
 
-        {(selectedZone || selectedNeed || selectedSource) && (
+        {(watch("zone") || selectedNeed || selectedSource) && (
           <div className="flex flex-wrap gap-2 justify-center mt-4 text-sm text-cgreen">
-            {selectedZone && <span className="bg-sgreen p-1 rounded-full">Zone: {capitalizeWords(selectedZone)}</span>}
-            {selectedNeed && <span className="bg-sgreen p-1 rounded-full">Need: {capitalizeWords(selectedNeed)}</span>}
+            {watch("zone") && (
+              <span className="bg-sgreen p-1 rounded-full">
+                Zipcode: {capitalizeWords(watch("zone"))}
+              </span>
+            )}
+            {selectedNeed && (
+              <span className="bg-sgreen p-1 rounded-full">
+                Need: {capitalizeWords(selectedNeed)}
+              </span>
+            )}
             {selectedSource && (
-              <span className="bg-sgreen p-1 rounded-full">Source: {capitalizeWords(selectedSource)}</span>
+              <span className="bg-sgreen p-1 rounded-full">
+                Source: {capitalizeWords(selectedSource)}
+              </span>
             )}
           </div>
         )}

@@ -3,7 +3,7 @@
     "logo": "FMH",
     "about": "About",
     "services": "Services",
-    "signUp": "Sign Up",
+    "signUp": "Register",
     "logIn": "Log In",
     "adminDashboard": "Admin Dashboard",
     "volunteerDashboard": "Volunteer Dashboard",
@@ -47,7 +47,7 @@
     "submitButton": "Sign In",
     "submittingButton": "Signing in...",
     "signupPrompt": "New to FMH? {link}",
-    "signupLink": "Sign Up",
+    "signupLink": "Register",
     "errors": {
       "emailOrPhoneRequired": "Please enter your email or phone number",
       "passwordRequired": "Password is required",
@@ -67,7 +67,7 @@
     "password": "Password",
     "role": "Role",
     "select-role": "Choose your role",
-    "submit": "Sign Up",
+    "submit": "Register",
     "success": "Your account has been created! We’ll activate it soon.",
     "error": "Something went wrong. Please try again."
   },
@@ -76,9 +76,9 @@
     "subtitle": "Join our platform and get started",
     "fullName": "Full Name",
     "contactInfo": "Email or Phone",
-    "zone": "Zone (optional)",
+    "zone": "Zipecode (optional)",
     "password": "Password",
-    "submitButton": "Sign Up",
+    "submitButton": "Register",
     "submittingButton": "Creating...",
     "success": "Account created successfully!",
     "errors": {
@@ -116,7 +116,7 @@
     "clothing": "Clothing",
     "transportation": "Transport",
     "other": "Other",
-    "zone": "Zone",
+    "zone": "Zipecode",
     "north": "North",
     "south": "South",
     "entry-source": "Added By",
@@ -158,8 +158,8 @@
     "offlineAlert": "You're offline. Please reconnect to send.",
     "nameLabel": "Your Name (Optional)",
     "namePlaceholder": "Enter your name",
-    "zoneLabel": "Zone",
-    "selectZone": "Select zone",
+    "zoneLabel": "Zipecode",
+    "selectZone": "Select Zipecode",
     "north": "North",
     "south": "South",
     "east": "East",
@@ -191,7 +191,7 @@
     "contactPlaceholder": "Email or Phone",
     "skillsLabel": "Your Skills",
     "skillsPlaceholder": "List your skills",
-    "availabilityLabel": "When are you free?",
+    "availabilityLabel": "Comments",
     "availabilityPlaceholder": "Days or hours you can help",
     "submit": "Submit",
     "submitting": "Submitting...",
@@ -228,9 +228,9 @@
       "localImpactText": "We focus on making a difference right where it matters most — in your neighborhood."
     },
     "storyTitle": "Our Story",
-    "storyText": "What started as a small initiative during times of crisis has grown into a platform connecting hundreds of volunteers and families across multiple zones. Together, we’ve turned compassion into action — one request at a time.",
+    "storyText": "What started as a small initiative during times of crisis has grown into a platform connecting hundreds of volunteers and families across multiple zones. Together, we’ll turn compassion into action — one request at a time.",
     "joinTitle": "Join Us",
-    "joinText": "Whether you want to volunteer, contribute, or request assistance — your involvement strengthens our community."
+    "joinText": "Whether you want to volunteer, contribute, or request assistance — your involvement strengthens the community."
   },
   "ServicesPage": {
     "header": {
@@ -287,7 +287,7 @@
     "filters": {
       "needType": "Need Type",
       "status": "Status",
-      "zone": "Zone",
+      "zone": "Zipcode",
       "source": "Source",
       "all": "All"
     },
@@ -304,9 +304,9 @@
       "delivered": "Delivered"
     },
     "zones": {
-      "a": "Zone A",
-      "b": "Zone B",
-      "c": "Zone C"
+      "a": "Zipecode A",
+      "b": "Zipecode B",
+      "c": "Zipecode C"
     },
     "sources": {
       "referral": "Referral",
@@ -316,7 +316,7 @@
     "table": {
       "requestNumber": "Request #",
       "needType": "Need Type",
-      "zone": "Zone",
+      "zone": "Zipecode",
       "source": "Source",
       "status": "Status",
       "assigned": "Assigned"
@@ -382,7 +382,7 @@
       "placeholder": "Add any additional notes..."
     },
     "AdditionalInfoSection": {
-      "zone": "Zone",
+      "zone": "Zipecode",
       "priority": "Priority",
       "additionalNotes": "Additional Notes",
       "need_type": "Need Type",
@@ -398,7 +398,7 @@
     "table": {
       "requestNumber": "Request #",
       "needType": "Need Type",
-      "zone": "Zone",
+      "zone": "Zipecode",
       "source": "Source",
       "status": "Status"
     }
