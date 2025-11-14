@@ -103,7 +103,6 @@ export default function VolunteerForm() {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        {/* Full Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700">{t("fullNameLabel")}</label>
           <input
@@ -113,8 +112,6 @@ export default function VolunteerForm() {
             className="mt-1 w-full px-3 py-2 bg-sgreen rounded-md outline-none focus:ring-2 focus:ring-cgreen"
           />
         </div>
-
-        {/* Contact Info */}
         <div>
           <label className="block text-sm font-medium text-gray-700">{t("contactLabel")}</label>
           <input
@@ -125,7 +122,6 @@ export default function VolunteerForm() {
           />
         </div>
 
-        {/* Password */}
         <div>
           <label className="block text-sm font-medium text-gray-700">{t("passwordLabel")}</label>
           <input
@@ -136,7 +132,6 @@ export default function VolunteerForm() {
           />
         </div>
 
-        {/* Volunteer Options - stacked vertically */}
         <div>
           <label className="block text-sm font-medium text-gray-700">{t("skillsLabel")}</label>
           <div className="mt-2 flex flex-col space-y-2">
@@ -154,7 +149,6 @@ export default function VolunteerForm() {
           </div>
         </div>
 
-        {/* Availability */}
         <div>
           <label className="block text-sm font-medium text-gray-700">{t("availabilityLabel")}</label>
           <textarea
@@ -163,8 +157,6 @@ export default function VolunteerForm() {
             className="mt-1 w-full px-3 py-2 bg-sgreen rounded-md outline-none h-24 resize-none focus:ring-2 focus:ring-cgreen"
           />
         </div>
-
-        {/* Submit */}
         <button
           type="submit"
           disabled={loading || !isOnline}

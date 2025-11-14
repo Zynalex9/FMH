@@ -3,12 +3,14 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 type CreateSupportOffer = {
   full_name: string;
+  contact_information: string;   
+  password?: string | null;      
   donation_type: string;
-  contact_information: string;
+  donationTypeOther?: string;    
   availability: string;
-  for_events: boolean;
-  for_outreachs: boolean;
+  created_by?: string | null;   
 };
+
 export const useCreateSupportOffer = () => {
   return useMutation({
     mutationFn: async (data: CreateSupportOffer) => {

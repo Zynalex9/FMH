@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 export interface IUser {
   id: string;
   email: string;
@@ -12,6 +11,8 @@ export interface IUser {
   phone_verified?: boolean;
   skills?: string;
   availability?: string;
+  for_events?: boolean;
+  for_outreachs?: boolean;
   metadata?: {
     email?: string;
     email_verified?: boolean;
@@ -22,9 +23,12 @@ export interface IUser {
     skills?: string;
     availability?: string;
     is_active?: boolean;
+    for_events?: boolean;
+    for_outreachs?: boolean;
     [key: string]: unknown;
   };
 }
+
 
 
 interface InitialState {
