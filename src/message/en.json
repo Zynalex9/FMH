@@ -73,7 +73,7 @@
   },
   "UserSignUpForm": {
     "title": "Create Your Account",
-    "subtitle": "Join our platform and get started",
+    "subtitle": "Be The Change",
     "fullName": "Full Name",
     "contactInfo": "Email or Phone",
     "zone": "Zipecode (optional)",
@@ -213,24 +213,24 @@
     "phoneTitle": "Phone"
   },
   "AboutPage": {
-    "title": "About Us",
-    "subtitle": "Connecting neighbors. Empowering communities. Delivering hope.",
+    "title": "About FMH – For My Health",
+    "subtitle": "Delivering dignity, restoring hope, and supporting everyday health.",
     "missionTitle": "Our Mission",
-    "missionText": "We believe that no one should face hardship alone. Our platform bridges the gap between those who need support and those who are ready to help — through food, clothing, medical aid, or a simple act of kindness.",
+    "missionText": "At FMH – For My Health, our mission is to Deliver. Restore. Daily.\n\nWe serve children, families, and seniors facing hardship by providing consistent access to nourishment, hygiene care, and essential items. Through direct delivery and compassionate outreach, we help strengthen underserved communities across Little Rock and beyond.\n\nWe believe that true health means more than medicine. It’s having dignity at every moment. Through consistent outreach and compassion, FMH provides food, clothes, hygiene kits, educational supplies, and seasonal essentials — meeting people where they are and restoring strength one delivery at a time.",
     "values": {
-      "empathyTitle": "Empathy First",
-      "empathyText": "Every request represents a real human need. We approach each one with care and compassion.",
-      "communityTitle": "Community Power",
-      "communityText": "We strengthen communities by empowering individuals to support each other.",
-      "transparencyTitle": "Transparency",
-      "transparencyText": "Every request and every delivery is tracked openly to ensure trust and accountability.",
-      "localImpactTitle": "Local Impact",
-      "localImpactText": "We focus on making a difference right where it matters most — in your neighborhood."
+      "empathyTitle": "Deliver",
+      "empathyText": "FMH meets people where they are — on the streets, in shelters, or at their front doors.",
+      "communityTitle": "Restore",
+      "communityText": "True health means restoring dignity, stability, and hope — not just meeting needs.",
+      "transparencyTitle": "Daily",
+      "transparencyText": "Poverty and hunger don’t take breaks — and neither should compassion.",
+      "localImpactTitle": "Community Impact",
+      "localImpactText": "Serving children, families, and seniors across Little Rock with food access, hygiene support, and seasonal outreach."
     },
     "storyTitle": "Our Story",
-    "storyText": "What started as a small initiative during times of crisis has grown into a platform connecting hundreds of volunteers and families across multiple zones. Together, we’ll turn compassion into action — one request at a time.",
+    "storyText": "FMH – For My Health was born from a simple truth: health is more than medicine. It is food on the table, clean clothes, warmth in winter, and dignity in every moment.\n\nFounded in Little Rock, Arkansas, by Sy’Viceeaa Hall, FMH began as a small outreach effort helping families who were slipping through the cracks — the working mothers skipping meals so their children could eat, seniors choosing between medication and heating, and unhoused neighbors often overlooked.\n\nWhat started as personal deliveries of food and hygiene items grew into a structured, community-based system built on three words: Deliver. Restore. Daily. These words became more than a tagline — they became a model of compassion in action.\n\nToday, FMH supports hundreds of Arkansans through food access, hygiene kits, educational supplies, and the annual “Warm Hands = Warm Hearts” Winter Initiative. As FMH expands, it aims to reach thousands, restoring hope one delivery at a time.",
     "joinTitle": "Join Us",
-    "joinText": "Whether you want to volunteer, contribute, or request assistance — your involvement strengthens the community."
+    "joinText": "Whether you want to volunteer, contribute, or request help — you are a part of restoring dignity, health, and hope for families across Arkansas."
   },
   "ServicesPage": {
     "header": {
@@ -347,14 +347,13 @@
     "errorToast": "Failed to assign request"
   },
   "RequestDetail": {
-"noChanges": "No changes to save.",
+    "noChanges": "No changes to save.",
     "uploadRequiredForDelivered": "You must upload at least one photo to mark as Delivered.",
     "adminOnlyAfterDelivered": "This request is already Delivered. Only admin can edit.",
     "saving": "Saving…",
     "updateStatus": "Update Status",
     "loading": "Loading...",
     "error": "Failed to load request.",
-
     "HeaderSection": {
       "requests": "Requests",
       "requestNumber": "Request #{{requestNumber}}",
@@ -374,8 +373,8 @@
       "call": "Call"
     },
     "UploadSection": {
-     "uploadPhoto": "Upload Proof Photo",
-    "requiredForDelivered": "Required for Delivered status"
+      "uploadPhoto": "Upload Proof Photo",
+      "requiredForDelivered": "Required for Delivered status"
     },
     "NotesSection": {
       "addNotes": "Add Notes",
