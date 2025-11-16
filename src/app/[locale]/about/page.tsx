@@ -33,9 +33,9 @@ export default function AboutPage() {
   const images = [
     { src: "/Image_anonymized.jpg", alt: "Volunteer helping" },
     { src: "/People_anonymized.jpg", alt: "Community members" },
-    { src: "/packages.jfif", alt: "Donation packages" },
+    { src: "/packages.jpg", alt: "Donation packages" },
     { src: "/packages_box.jpeg", alt: "Packed boxes ready for delivery" },
-    { src: "/car.jfif", alt: "Transportation for outreach" },
+    { src: "/car.jpg", alt: "Transportation for outreach" },
     { src: "/Clothes_anonymized.jpg", alt: "Clothing donations" },
   ];
 
