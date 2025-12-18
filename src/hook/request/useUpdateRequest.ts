@@ -1,5 +1,7 @@
 // src/hooks/request/useUpdateRequest.ts
 import { updateRequestFn } from "@/queries/request";
+import { queryKeys } from "@/lib/queryConfig";
+import { IRequest } from "@/types/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -37,14 +39,61 @@ export function useUpdateRequest() {
       return await updateRequestFn(status, notes, requestId, proofUrls);
     },
 
-    onSuccess: (_data, variables) => {
-      toast.success(t("request_updated"));
-      queryClient.invalidateQueries({
-        queryKey: ["request", variables.requestId],
+    // Optimistic update for instant UI feedback
+    onMutate: async (variables) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({
+        queryKey: queryKeys.requests.detail(variables.requestId),
       });
+
+      // Snapshot the previous value
+      const previousRequest = queryClient.getQueryData<IRequest>(
+        queryKeys.requests.detail(variables.requestId)
+      );
+
+      // Optimistically update to the new value
+      if (previousRequest) {
+        queryClient.setQueryData<IRequest>(
+          queryKeys.requests.detail(variables.requestId),
+          {
+            ...previousRequest,
+            status: variables.status,
+            notes: variables.notes,
+            ...(variables.proofUrls && { proof_urls: variables.proofUrls }),
+          }
+        );
+      }
+
+      return { previousRequest };
     },
 
-    onError: (error: unknown) => {
+    onSuccess: (_data, variables) => {
+      toast.success(t("request_updated"));
+      // Invalidate related queries to ensure consistency
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.requests.detail(variables.requestId),
+      });
+      // Also invalidate the list to reflect status changes
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.requests.lists(),
+      });
+      // Invalidate assigned requests if user is assigned
+      if (user?.id) {
+        queryClient.invalidateQueries({
+          queryKey: queryKeys.requests.assigned(user.id),
+        });
+      }
+    },
+
+    onError: (error: unknown, variables, context) => {
+      // Rollback on error
+      if (context?.previousRequest) {
+        queryClient.setQueryData(
+          queryKeys.requests.detail(variables.requestId),
+          context.previousRequest
+        );
+      }
+
       if (
         error instanceof Error &&
         error.message === "PROOF_REQUIRED_FOR_DELIVERED"

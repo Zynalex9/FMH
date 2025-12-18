@@ -1,16 +1,39 @@
 import { supabase } from "@/lib/supabaseClient";
 import { IRequest } from "@/types/types";
 
+// Optimized query with specific column selection and ordering
 export const getRequests = async (): Promise<IRequest[]> => {
-  const { data, error } = await supabase.from("requests").select(`
-      *,
+  const { data, error } = await supabase
+    .from("requests")
+    .select(`
+      id,
+      request_title,
+      status,
+      priority,
+      need_type,
+      zone,
+      contact_name,
+      contact_email,
+      contact_phone,
+      contact_location,
+      contact_information,
+      contact_description,
+      notes,
+      proof_urls,
+      source,
+      submitted_by,
+      assigned_to,
+      created_at,
+      updated_at,
       assigned_user:users!assigned_to (
         id,
         full_name,
         email,
         phone
       )
-    `);
+    `)
+    .order("created_at", { ascending: false }) // Most recent first
+    .limit(100); // Pagination limit for performance
 
   if (error) {
     console.error("Error fetching requests:", error.message);
@@ -20,20 +43,48 @@ export const getRequests = async (): Promise<IRequest[]> => {
   return data ?? [];
 };
 
+// Optimized single request query
 export const getRequest = async (requestId: string): Promise<IRequest> => {
   const { data, error } = await supabase
     .from("requests")
-    .select("*")
+    .select(`
+      id,
+      request_title,
+      status,
+      priority,
+      need_type,
+      zone,
+      contact_name,
+      contact_email,
+      contact_phone,
+      contact_location,
+      contact_information,
+      contact_description,
+      notes,
+      proof_urls,
+      source,
+      submitted_by,
+      assigned_to,
+      created_at,
+      updated_at,
+      assigned_user:users!assigned_to (
+        id,
+        full_name,
+        email,
+        phone
+      )
+    `)
     .eq("id", requestId)
     .single();
 
   if (error) {
-    console.error("Error fetching requests:", error.message);
+    console.error("Error fetching request:", error.message);
     throw new Error(error.message);
   }
 
-  return data ?? [];
-}
+  return data;
+};
+
 export async function updateRequestFn(
   status: string,
   notes: string,

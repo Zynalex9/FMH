@@ -1,5 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabaseClient";
+import { queryKeys } from "@/lib/queryConfig";
 
 interface RequestData {
   request_title?: string;
@@ -18,6 +19,8 @@ interface RequestData {
 }
 
 export function useCreateRequest() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (requestData: RequestData) => {
       const { data, error } = await supabase
@@ -28,6 +31,12 @@ export function useCreateRequest() {
 
       if (error) throw error;
       return data;
+    },
+    onSuccess: () => {
+      // Invalidate request lists to include the new request
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.requests.lists(),
+      });
     },
   });
 }
