@@ -2,7 +2,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["request", "requests", "volunteer/dashboard"] as const;
+const PROTECTED_PREFIXES = ["request", "requests", "volunteer/dashboard", "admin-approval"] as const;
 const AUTH_ROUTES = ["signin", "admin-signup", "user-signup", "volunteer-signup"] as const;
 
 export async function middleware(req: NextRequest) {
@@ -50,8 +50,22 @@ export async function middleware(req: NextRequest) {
     }
 
     const role = session.user.user_metadata?.role;
+    const isActive = session.user.user_metadata?.is_active;
     const isAdmin = role === "admin";
     const isVolunteer = role === "volunteer";
+
+    // Block inactive admins - redirect to pending approval page
+    if (isAdmin && !isActive) {
+      return NextResponse.redirect(new URL(`/${locale}/pending-approval`, req.url));
+    }
+
+    // Admin approval page - only for active admins
+    if (pathWithoutLocale === "admin-approval") {
+      if (!isAdmin || !isActive) {
+        return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
+      }
+      return res;
+    }
 
     // Volunteer dashboard
     if (pathWithoutLocale.startsWith("volunteer/dashboard")) {

@@ -69,7 +69,31 @@
     "select-role": "Selecciona tu rol",
     "submit": "Registrarse",
     "success": "¡Cuenta creada con éxito!",
-    "error": "Algo salió mal. Inténtalo de nuevo."
+    "error": "Algo salió mal. Inténtalo de nuevo.",
+    "hasSecretKey": "Tengo una clave secreta de administrador",
+    "secretKeyPlaceholder": "Ingresa la clave secreta de administrador",
+    "instantAccessInfo": "Con una clave válida, obtendrás acceso instantáneo.",
+    "pendingApprovalInfo": "Sin clave, tu cuenta necesitará aprobación de administrador.",
+    "successInstant": "¡Cuenta creada! Ya puedes iniciar sesión.",
+    "successPending": "¡Cuenta creada! Esperando aprobación del administrador."
+  },
+  "PendingApproval": {
+    "title": "Cuenta Pendiente de Aprobación",
+    "description": "Tu cuenta de administrador ha sido creada pero está esperando aprobación de un super administrador. Recibirás un correo cuando tu cuenta sea activada.",
+    "returnHome": "Volver al Inicio",
+    "signOut": "Cerrar sesión y probar otra cuenta"
+  },
+  "AdminApproval": {
+    "title": "Aprobaciones de Admin Pendientes",
+    "noPending": "No hay aprobaciones de administrador pendientes",
+    "applied": "Solicitado",
+    "approve": "Aprobar",
+    "reject": "Rechazar",
+    "fetchError": "Error al obtener administradores pendientes",
+    "approveSuccess": "Administrador aprobado exitosamente",
+    "approveError": "Error al aprobar administrador",
+    "rejectSuccess": "Administrador rechazado",
+    "rejectError": "Error al rechazar administrador"
   },
   "UserSignUpForm": {
     "title": "Crea tu cuenta",

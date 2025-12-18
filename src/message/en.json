@@ -69,7 +69,31 @@
     "select-role": "Choose your role",
     "submit": "Register",
     "success": "Your account has been created! We’ll activate it soon.",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "hasSecretKey": "I have an admin secret key",
+    "secretKeyPlaceholder": "Enter admin secret key",
+    "instantAccessInfo": "With valid key, you'll get instant access.",
+    "pendingApprovalInfo": "Without key, your account will need admin approval.",
+    "successInstant": "Account created! You can now sign in.",
+    "successPending": "Account created! Waiting for admin approval."
+  },
+  "PendingApproval": {
+    "title": "Account Pending Approval",
+    "description": "Your admin account has been created but is awaiting approval from a super admin. You'll receive an email once your account is activated.",
+    "returnHome": "Return Home",
+    "signOut": "Sign out and try another account"
+  },
+  "AdminApproval": {
+    "title": "Pending Admin Approvals",
+    "noPending": "No pending admin approvals",
+    "applied": "Applied",
+    "approve": "Approve",
+    "reject": "Reject",
+    "fetchError": "Failed to fetch pending admins",
+    "approveSuccess": "Admin approved successfully",
+    "approveError": "Failed to approve admin",
+    "rejectSuccess": "Admin rejected",
+    "rejectError": "Failed to reject admin"
   },
   "UserSignUpForm": {
     "title": "Create Your Account",

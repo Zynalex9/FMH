@@ -5,19 +5,33 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabaseClient";
+import { useState } from "react";
+
 interface SignUpExtendedData extends SignUpData {
   avatar: FileList;
+  secretKey?: string;
 }
+
+const ADMIN_SECRET_KEY = process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+
 export default function SignUpForm() {
   const t = useTranslations("SignUp");
+  const [showSecretKey, setShowSecretKey] = useState(false);
+
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<SignUpExtendedData>();
 
+  const secretKeyValue = watch("secretKey");
+
   const onSubmit = async (data: SignUpExtendedData) => {
+    // Validate secret key if provided
+    const hasValidSecretKey = data.secretKey && data.secretKey === ADMIN_SECRET_KEY;
+
     let avatarUrl = null;
     if (data.avatar && data.avatar.length > 0) {
       const file = data.avatar[0];
@@ -46,7 +60,8 @@ export default function SignUpForm() {
           full_name: data.full_name?.trim() || null,
           phone: data.phone?.trim() || null,
           role: "admin",
-          is_active: false,
+          // Instant activation if valid secret key, otherwise pending approval
+          is_active: hasValidSecretKey,
           profile_picture: avatarUrl,
         },
       },
@@ -58,7 +73,11 @@ export default function SignUpForm() {
       return;
     }
 
-    toast.success(t("success"));
+    if (hasValidSecretKey) {
+      toast.success(t("successInstant") || "Account created! You can now sign in.");
+    } else {
+      toast.success(t("successPending") || "Account created! Waiting for admin approval.");
+    }
     reset();
   };
   return (
@@ -102,6 +121,38 @@ export default function SignUpForm() {
             className="w-full focus:border-0 cursor-pointer focus:outline-0 bg-sgreen text-black rounded-lg p-2"
             {...register("avatar")}
           />
+
+          {/* Secret Key Toggle */}
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="hasSecretKey"
+              checked={showSecretKey}
+              onChange={(e) => setShowSecretKey(e.target.checked)}
+              className="w-4 h-4 accent-cgreen"
+            />
+            <label htmlFor="hasSecretKey" className="text-sm text-gray-600 cursor-pointer">
+              {t("hasSecretKey") || "I have an admin secret key"}
+            </label>
+          </div>
+
+          {/* Conditional Secret Key Input */}
+          {showSecretKey && (
+            <input
+              {...register("secretKey")}
+              type="password"
+              placeholder={t("secretKeyPlaceholder") || "Enter admin secret key"}
+              className="w-full focus:border-0 focus:outline-0 bg-sgreen text-black rounded-lg p-2"
+            />
+          )}
+
+          {/* Info message */}
+          <p className="text-xs text-gray-500">
+            {showSecretKey && secretKeyValue
+              ? (t("instantAccessInfo") || "With valid key, you'll get instant access.")
+              : (t("pendingApprovalInfo") || "Without key, your account will need admin approval.")}
+          </p>
+
           <button
             type="submit"
             disabled={isSubmitting}

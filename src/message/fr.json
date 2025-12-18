@@ -69,7 +69,31 @@
     "select-role": "Sélectionnez votre rôle",
     "submit": "S'inscrire",
     "success": "Compte créé avec succès !",
-    "error": "Une erreur s'est produite. Veuillez réessayer."
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "hasSecretKey": "J'ai une clé secrète d'administrateur",
+    "secretKeyPlaceholder": "Entrez la clé secrète d'administrateur",
+    "instantAccessInfo": "Avec une clé valide, vous obtiendrez un accès instantané.",
+    "pendingApprovalInfo": "Sans clé, votre compte nécessitera l'approbation d'un administrateur.",
+    "successInstant": "Compte créé ! Vous pouvez maintenant vous connecter.",
+    "successPending": "Compte créé ! En attente d'approbation de l'administrateur."
+  },
+  "PendingApproval": {
+    "title": "Compte en Attente d'Approbation",
+    "description": "Votre compte administrateur a été créé mais est en attente d'approbation par un super administrateur. Vous recevrez un email une fois votre compte activé.",
+    "returnHome": "Retour à l'Accueil",
+    "signOut": "Se déconnecter et essayer un autre compte"
+  },
+  "AdminApproval": {
+    "title": "Approbations d'Admin en Attente",
+    "noPending": "Aucune approbation d'administrateur en attente",
+    "applied": "Demandé",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "fetchError": "Échec de récupération des administrateurs en attente",
+    "approveSuccess": "Administrateur approuvé avec succès",
+    "approveError": "Échec de l'approbation de l'administrateur",
+    "rejectSuccess": "Administrateur rejeté",
+    "rejectError": "Échec du rejet de l'administrateur"
   },
   "UserSignUpForm": {
     "title": "Créez votre compte",
