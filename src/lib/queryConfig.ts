@@ -28,6 +28,16 @@ export const queryKeys = {
     detail: (id: string) => [...queryKeys.users.details(), id] as const,
     current: () => [...queryKeys.users.all, "current"] as const,
   },
+
+  // Analytics queries
+  analytics: {
+    all: ["analytics"] as const,
+    kpi: () => [...queryKeys.analytics.all, "kpi"] as const,
+    requests: (range?: string) => [...queryKeys.analytics.all, "requests", range] as const,
+    volunteers: () => [...queryKeys.analytics.all, "volunteers"] as const,
+    donors: (range?: string) => [...queryKeys.analytics.all, "donors", range] as const,
+    users: (range?: string) => [...queryKeys.analytics.all, "users", range] as const,
+  },
 } as const;
 
 // Cache time configurations (in milliseconds)
@@ -79,5 +89,13 @@ export const queryOptions = {
     ...cacheTime.long,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
+  },
+  // For analytics dashboard - longer cache to reduce DB load
+  analytics: {
+    staleTime: 10 * 60 * 1000, // 10 minutes - analytics data doesn't need real-time updates
+    gcTime: 60 * 60 * 1000, // 1 hour garbage collection
+    refetchOnWindowFocus: false,
+    refetchOnMount: false, // Use cached data on mount
+    refetchOnReconnect: false,
   },
 } as const;

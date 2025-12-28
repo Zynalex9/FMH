@@ -1,11 +1,7 @@
 "use client";
-
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
-
 export default function TermsPage() {
   const t = useTranslations("TermsPage");
-  const { locale } = useParams();
 
   return (
     <section className="px-6 flex justify-center items-center flex-col py-16 text-black bg-cbg h-screen w-full">

@@ -18,11 +18,29 @@ export async function GET() {
 
     // Filter for pending admins (role = admin AND is_active = false)
     const pendingAdmins = authUsers.users
-      .filter((user:any) => {
+      .filter((user: {
+        id: string;
+        email: string;
+        created_at: string;
+        user_metadata?: {
+          role?: string;
+          is_active?: boolean;
+          full_name?: string;
+          phone?: string;
+        };
+      }) => {
         const metadata = user.user_metadata;
         return metadata?.role === "admin" && metadata?.is_active === false;
       })
-      .map((user:any) => ({
+      .map((user: {
+        id: string;
+        email: string;
+        created_at: string;
+        user_metadata?: {
+          full_name?: string;
+          phone?: string;
+        };
+      }) => ({
         id: user.id,
         email: user.email,
         full_name: user.user_metadata?.full_name || null,

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   HandHeart,
   ClipboardList,
-  Truck,
   Users,
   HeartHandshake,
   BarChart3,

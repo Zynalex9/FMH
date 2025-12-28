@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function PendingApprovalPage() {
   const t = useTranslations("PendingApproval");
@@ -25,12 +26,12 @@ export default function PendingApprovalPage() {
             "Your admin account has been created but is awaiting approval from a super admin. You'll receive an email once your account is activated."}
         </p>
         <div className="flex flex-col gap-3">
-          <a
+          <Link
             href="/"
             className="inline-block bg-cgreen text-white px-6 py-2 rounded-lg hover:bg-cgreen/90 transition-colors"
           >
             {t("returnHome") || "Return Home"}
-          </a>
+          </Link>
           <button
             onClick={handleSignOut}
             className="text-gray-500 hover:text-gray-700 text-sm cursor-pointer"

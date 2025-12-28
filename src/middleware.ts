@@ -2,7 +2,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["request", "requests", "volunteer/dashboard", "admin-approval"] as const;
+const PROTECTED_PREFIXES = ["request", "requests", "volunteer/dashboard", "admin-approval", "admin/dashboard"] as const;
 const AUTH_ROUTES = ["signin", "admin-signup", "user-signup", "volunteer-signup"] as const;
 
 export async function middleware(req: NextRequest) {
@@ -67,6 +67,14 @@ export async function middleware(req: NextRequest) {
       return res;
     }
 
+    // Admin dashboard - only for active admins
+    if (pathWithoutLocale === "admin/dashboard") {
+      if (!isAdmin || !isActive) {
+        return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
+      }
+      return res;
+    }
+
     // Volunteer dashboard
     if (pathWithoutLocale.startsWith("volunteer/dashboard")) {
       if (!isVolunteer) {
@@ -111,6 +119,8 @@ export const config = {
     "/:locale/request/:path*",
     "/:locale/requests/:path*",
     "/:locale/volunteer/dashboard",
+    "/:locale/admin/dashboard",
+    "/:locale/admin-approval",
     "/:locale/signin",
     "/:locale/admin-signup",
     "/:locale/user-signup",
