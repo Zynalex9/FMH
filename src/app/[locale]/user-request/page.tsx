@@ -10,9 +10,8 @@ import { toast } from "sonner";
 type FormValues = {
   name: string;
   contactInfo: string;
-  zone: string;
+  zone: string; 
   source: string;
-  otherZone?: string;
   typeOfNeed: string;
   otherNeed?: string;
   source_other?: string;
@@ -23,7 +22,6 @@ export default function RequestForm() {
   const t = useTranslations("UserRequest");
   const [showOtherSources, setShowOtherSources] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
-  const [showOtherZone, setShowOtherZone] = useState(false);
   const [showOtherNeed, setShowOtherNeed] = useState(false);
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
   const submitRequest = useSubmitRequest();
@@ -43,10 +41,6 @@ export default function RequestForm() {
     };
   }, []);
   useEffect(() => {
-    setShowOtherZone(selectedZone === "others");
-  }, [selectedZone]);
-
-  useEffect(() => {
     setShowOtherNeed(selectedNeed === "others");
   }, [selectedNeed]);
   useEffect(() => {
@@ -59,8 +53,7 @@ const onSubmit = async (data: FormValues) => {
     return;
   }
 
-  // Determine actual values, fallback to empty string if undefined
-  const zone = showOtherZone ? data.otherZone?.trim() : data.zone?.trim();
+  const zone = data.zone?.trim();
   const need_type = showOtherNeed ? data.otherNeed?.trim() : data.typeOfNeed?.trim();
   const source = showOtherSources ? data.source_other?.trim() : data.source?.trim();
 
@@ -124,28 +117,14 @@ const onSubmit = async (data: FormValues) => {
             />
           </div>
 
-          {/* Zone */}
+          {/* Zipcode (plain input) */}
           <div>
-            <label className="text-sm font-medium">{t("zoneLabel")}</label>
-            <select
+            <label className="text-sm font-medium">{t("zipcodeLabel") || "Zipcode"}</label>
+            <input
               {...register("zone", { required: true })}
+              placeholder={t("zipcodePlaceholder") || "Enter zipcode"}
               className="w-full bg-sgreen px-3 py-2 rounded-md outline-none"
-            >
-              <option value="">{t("selectZone")}</option>
-              <option value="north">{t("north")}</option>
-              <option value="south">{t("south")}</option>
-              <option value="east">{t("east")}</option>
-              <option value="west">{t("west")}</option>
-              <option value="others">Others</option>
-            </select>
-
-            {showOtherZone && (
-              <input
-                {...register("otherZone")}
-                placeholder="Please specify (optional)"
-                className="mt-2 w-full bg-sgreen px-3 py-2 rounded-md outline-none"
-              />
-            )}
+            />
           </div>
 
           {/* Type of Need */}

@@ -63,7 +63,7 @@ export default function RequestsPage() {
   const [selectedSource, setSelectedSource] = useState<string | null>(null);
 
   const { data: requests, isLoading, error } = useGetAllRequests();
-
+  console.log("data",requests);
   const filteredData = useMemo(() => {
     if (!requests) return [];
 
@@ -93,7 +93,7 @@ export default function RequestsPage() {
     selectedZone,
     selectedSource,
   ]);
-
+console.log("filteredData",filteredData);
   const handleRowClick = (id: string) => {
     router.push(`/${locale}/requests/${id}`);
   };
@@ -187,7 +187,7 @@ return (
                 <TableHeader className="bg-cbg border-0">
                   <TableRow className="border-0">
                     <TableHead className="text-black">
-                      {t("table.requestNumber")}
+                      Request
                     </TableHead>
                     <TableHead className="text-cgreen">
                       {t("table.needType")}
@@ -215,7 +215,7 @@ return (
                       className="cursor-pointer hover:bg-sgreen/40 transition-colors border-b border-gray-200 last:border-b-0"
                     >
                       <TableCell className="py-4 text-black font-medium capitalize">
-                        {request.request_number}
+                        {request.request_title? request.request_title : `No Title`} 
                       </TableCell>
                       <TableCell className="text-cgreen py-4 capitalize">
                         {request.need_type}

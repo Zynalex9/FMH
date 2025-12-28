@@ -23,9 +23,9 @@ export function HeaderSection({
           {t("requests")}
         </Link>
         <span>/</span>
-        <span>Request #{request?.request_number}</span>
+        <span>Request :{request?.id.slice(0, 8)}</span>
       </div>
-      <h1 className="text-3xl font-bold mb-1">{request?.request_number}</h1>
+      <h1 className="text-3xl font-bold mb-1">{request?.request_title || "<No Title>"}</h1>
       <p className="text-sm text-cgreen">
         {updatedAt
           ? `Updated ${formatDistanceToNow(new Date(updatedAt), { addSuffix: true })}`
