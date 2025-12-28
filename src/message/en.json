@@ -241,19 +241,19 @@
     "title": "FMH – For My Health",
     "subtitle": "Deliver. Restore. Daily.",
     "missionTitle": "Our Mission",
-    "missionText": "Deliver. Restore. Daily.\n\nWe serve individuals, children, families, and seniors facing hardship by providing consistent access to nourishment, hygiene care, and essential items. Through direct delivery and compassionate outreach, we help strengthen underserved communities across Little Rock and beyond.\n\nTrue health means more than medicine. It’s having dignity at every moment. Through consistent outreach and compassion, FMH provides food, clothes, hygiene kits, educational supplies, and seasonal essentials — meeting people where they are and restoring strength one delivery at a time.",
+    "missionText": "Deliver. Restore. Daily.\n\nWe serve children, single individuals, families, and seniors facing hardship by providing consistent access to nourishment, hygiene care, and essential items. Through direct delivery and compassionate outreach, we help strengthen underserved communities across Little Rock and beyond.\n\nTrue health means more than medicine. It’s having dignity at every moment. Through consistent outreach and compassion, FMH provides food, clothes, hygiene kits, educational supplies, and seasonal essentials — meeting people where they are and restore strength one delivery at a time.",
     "values": {
       "empathyTitle": "Deliver",
-      "empathyText": "FMH meets people where they are.",
+      "empathyText": "FMH meets people where they are. Whether it’s under a bridge, at a shelter home, or right at their door step",
       "communityTitle": "Restore",
-      "communityText": "True health means restoring dignity — not just meeting needs.",
+      "communityText": "True health means restore dignity — not just meeting needs.",
       "transparencyTitle": "Daily",
       "transparencyText": "Poverty and hunger don’t take breaks — and neither should compassion.",
       "localImpactTitle": "Community Impact",
-      "localImpactText": "Serving children, families, and seniors across Little Rock with food access, hygiene support, and seasonal outreach."
+      "localImpactText": "Serving children, families, and seniors with food access, hygiene support, and seasonal outreach."
     },
     "storyTitle": "Our Story",
-    "storyText": "FMH – For My Health was born from a simple truth: health is more than medicine. It is food on the table, clean clothes, warmth in winter, and dignity in every moment.\n\nFounded in Little Rock, Arkansas, by Sy’Viceeaa Hall, FMH began as a small outreach effort helping families who were slipping through the cracks — the working mothers skipping meals so their children could eat, seniors choosing between medication and heating, and unhoused neighbors often overlooked.\n\nWhat started as personal deliveries of food and hygiene items grew into a structured, community-based system built on three words: Deliver. Restore. Daily. These words became more than a tagline — they became a model of compassion in action.\n\nToday, FMH supports hundreds of Arkansans through food access, hygiene kits, educational supplies, and the annual “Warm Hands = Warm Hearts” Winter Initiative. As FMH expands, it aims to reach thousands, restoring hope one delivery at a time.",
+    "storyText": "FMH – For My Health was born from a simple truth: health is more than medicine. It is food on the table, clean clothes, warmth in winter, and dignity in every moment.\n\nFounded in Little Rock, Arkansas, by Sy’Viceeaa Hall, FMH began as a small outreach effort helping families who were slipping through the cracks — the working mothers skipping meals so their children could eat, seniors choosing between medication and heating, and unhoused neighbors often overlooked.\n\nWhat started as personal deliveries of food and hygiene items grew into a structured, community-based system built on three words: Deliver. Restore. Daily. These words became more than a tagline — they became a model of compassion in action.\n\nToday, FMH supports hundreds of Arkansans through food access, hygiene kits, educational supplies, and the annual “Warm Hands = Warm Hearts” Winter Initiative. As FMH expands, it aims to reach thousands, restore hope one delivery at a time.",
     "joinTitle": "Join Us",
     "joinText": "Volunteer, contribute, or request help — restore dignity, health, and hope for families across Arkansas."
   },
@@ -296,7 +296,7 @@
     },
     "cta": {
       "title": "Be Part of the Movement.",
-      "description": "Whether you want to volunteer, donate, or raise awareness — every action strengthens communities.",
+      "description": "Volunteer, donate, or raise awareness — every action strengthens communities.",
       "volunteer": "Volunteer",
       "donate": "Donate"
     }

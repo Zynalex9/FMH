@@ -1,4 +1,5 @@
 "use client";
+import AllAnalytics from "@/components/admin/AllAnalytics";
 import RequestForm from "@/components/request/RequestForm";
 import { SupportOffersTable } from "@/components/request/SupportOfferTable";
 import RequestsPage from "@/components/request/Table";
@@ -14,6 +15,7 @@ export default function Page() {
       {tabState === "quick-entry" && <RequestForm />}
       {tabState === "all-requests" && <RequestsPage />}
       {tabState === "support-offers" && <SupportOffersTable />}
+      {tabState === "all-analytics" && <AllAnalytics />}
     </div>
   );
 }

@@ -65,7 +65,7 @@ interface ChartData {
 
 const CHART_COLORS = ["#22c55e", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"];
 
-export default function AdminDashboard() {
+export default function AllAnalytics() {
   const [dateRange, setDateRange] = useState<DateRange>("month");
 
   const { data: kpi, isLoading: kpiLoading, refetch: refetchKPI } = useKPISummary();
@@ -120,7 +120,7 @@ export default function AdminDashboard() {
   const isLoading = kpiLoading || requestsLoading || volunteersLoading || donorsLoading;
 
   return (
-    <div className="container mx-auto py-20 px-4">
+    <div className="container mx-auto py-10 px-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>

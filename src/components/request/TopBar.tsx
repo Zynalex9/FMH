@@ -22,10 +22,11 @@ export const RequestHeader: React.FC<RequestHeaderProps> = ({
     { id: "all-requests", label: t("tabs.allRequests") },
     { id: "quick-entry", label: t("tabs.quickEntry") },
     { id: "support-offers", label: t("tabs.supportOffers") },
+    { id: "all-analytics", label: "Analytics" },
   ];
 
   return (
-    <div className="mb-6">
+    <div className="mb-3">
       <div className="text-center sm:text-left">
         <h1 className="text-2xl sm:text-3xl font-semibold text-black">
           {t("title")}
