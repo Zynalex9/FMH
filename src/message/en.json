@@ -18,15 +18,15 @@
     "title": "Connecting Neighbors, Strengthening Communities",
     "sub-banner-text": "We're here to help. Whether you need assistance or want to contribute, we're building a stronger community together.",
     "help-title": "How We Help",
-    "help-sub-text": "Our services range from providing essential support to fostering community engagement. We're committed to making a difference in the lives of our neighbors.",
+    "help-sub-text": "Services range from providing essential support to fostering community engagement. We're committed to making a difference.",
     "our-services": "Our Services",
     "our-services-text": "We offer a variety of services to support our community.",
-    "assistance-title": "Assistance Programs",
-    "assistance-text": "Access to resources and support for those in need.",
-    "community-title": "Community Support",
-    "community-text": "Programs and events to foster community connections.",
-    "volunteer-title": "Volunteer Opportunities",
-    "volunteer-text": "Opportunities to give back and make a difference in your community.",
+    "assistance-title": "Programs",
+    "assistance-text": "Programs and events to foster community connections.",
+    "community-title": "Support",
+    "community-text": "Access to resources and support for those in need.",
+    "volunteer-title": "Opportunities",
+    "volunteer-text": "Give back and make a difference in your community.",
     "get-involved": "Get Involved",
     "request-help": "Request Help",
     "donate": "Donate",
@@ -238,15 +238,15 @@
     "phoneTitle": "Phone"
   },
   "AboutPage": {
-    "title": "About FMH – For My Health",
-    "subtitle": "Delivering dignity, restoring hope, and supporting everyday health.",
+    "title": "FMH – For My Health",
+    "subtitle": "Deliver. Restore. Daily.",
     "missionTitle": "Our Mission",
-    "missionText": "At FMH – For My Health, our mission is to Deliver. Restore. Daily.\n\nWe serve children, families, and seniors facing hardship by providing consistent access to nourishment, hygiene care, and essential items. Through direct delivery and compassionate outreach, we help strengthen underserved communities across Little Rock and beyond.\n\nWe believe that true health means more than medicine. It’s having dignity at every moment. Through consistent outreach and compassion, FMH provides food, clothes, hygiene kits, educational supplies, and seasonal essentials — meeting people where they are and restoring strength one delivery at a time.",
+    "missionText": "Deliver. Restore. Daily.\n\nWe serve individuals, children, families, and seniors facing hardship by providing consistent access to nourishment, hygiene care, and essential items. Through direct delivery and compassionate outreach, we help strengthen underserved communities across Little Rock and beyond.\n\nTrue health means more than medicine. It’s having dignity at every moment. Through consistent outreach and compassion, FMH provides food, clothes, hygiene kits, educational supplies, and seasonal essentials — meeting people where they are and restoring strength one delivery at a time.",
     "values": {
       "empathyTitle": "Deliver",
-      "empathyText": "FMH meets people where they are — on the streets, in shelters, or at their front doors.",
+      "empathyText": "FMH meets people where they are.",
       "communityTitle": "Restore",
-      "communityText": "True health means restoring dignity, stability, and hope — not just meeting needs.",
+      "communityText": "True health means restoring dignity — not just meeting needs.",
       "transparencyTitle": "Daily",
       "transparencyText": "Poverty and hunger don’t take breaks — and neither should compassion.",
       "localImpactTitle": "Community Impact",
@@ -255,12 +255,12 @@
     "storyTitle": "Our Story",
     "storyText": "FMH – For My Health was born from a simple truth: health is more than medicine. It is food on the table, clean clothes, warmth in winter, and dignity in every moment.\n\nFounded in Little Rock, Arkansas, by Sy’Viceeaa Hall, FMH began as a small outreach effort helping families who were slipping through the cracks — the working mothers skipping meals so their children could eat, seniors choosing between medication and heating, and unhoused neighbors often overlooked.\n\nWhat started as personal deliveries of food and hygiene items grew into a structured, community-based system built on three words: Deliver. Restore. Daily. These words became more than a tagline — they became a model of compassion in action.\n\nToday, FMH supports hundreds of Arkansans through food access, hygiene kits, educational supplies, and the annual “Warm Hands = Warm Hearts” Winter Initiative. As FMH expands, it aims to reach thousands, restoring hope one delivery at a time.",
     "joinTitle": "Join Us",
-    "joinText": "Whether you want to volunteer, contribute, or request help — you are a part of restoring dignity, health, and hope for families across Arkansas."
+    "joinText": "Volunteer, contribute, or request help — restore dignity, health, and hope for families across Arkansas."
   },
   "ServicesPage": {
     "header": {
       "title": "Our Services",
-      "subtitle": "At Community Connect (FMH), we make it easier for communities, volunteers, and admins to come together — ensuring help reaches those who need it most, right on time."
+      "subtitle": "We make it easier for communities, volunteers, and admins to come together — ensuring help reaches those who need it most."
     },
     "services": {
       "request": {
@@ -295,7 +295,7 @@
       }
     },
     "cta": {
-      "title": "Be Part of the Movement 🌍",
+      "title": "Be Part of the Movement.",
       "description": "Whether you want to volunteer, donate, or raise awareness — every action strengthens communities.",
       "volunteer": "Volunteer",
       "donate": "Donate"
@@ -446,7 +446,7 @@
   "Footer": {
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "description": "FMH – For My Health · Deliver. Restore. Daily. · Serving Little Rock and surrounding communities.",
+    "description": "FMH – For My Health · Deliver. Restore. Daily.",
     "copyright": "© 2025 Community Connect. All rights reserved."
   }
 }

@@ -27,12 +27,12 @@ export default function OurServices() {
     <section
       className="w-full py-4 px-6 text-center flex flex-col items-center mt-8"
     >
-      <h2 className="text-3xl font-bold text-gray-900 mb-2">
+      {/* <h2 className="text-3xl font-bold text-gray-900 mb-2">
         {t("our-services")}
       </h2>
       <p className="text-gray-600 mb-10 max-w-2xl">
         {t("our-services-text")}
-      </p>
+      </p> */}
 
       <div className="grid md:grid-cols-3 gap-6 w-full max-w-6xl">
         {services.map((service, index) => (

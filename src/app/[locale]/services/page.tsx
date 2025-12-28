@@ -10,12 +10,15 @@ import {
   HeartHandshake,
   BarChart3,
 } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function ServicesPage() {
   const t = useTranslations("ServicesPage");
   const router = useRouter();
   const params = useParams();
   const locale = params?.locale as string;
+  const { user } = useSelector((state: RootState) => state.user);
 
   const handleNavigation = (path: string) => {
     if (locale) router.push(`/${locale}/${path}`);
@@ -28,6 +31,7 @@ export default function ServicesPage() {
       description: t("services.request.description"),
       buttonText: t("services.request.button"),
       path: "user-request",
+      roles: ["recipient", "admin", "donor", "driver", null], // visible to all
     },
     {
       icon: <ClipboardList className="w-6 h-6 text-cgreen" />,
@@ -35,6 +39,7 @@ export default function ServicesPage() {
       description: t("services.admin.description"),
       buttonText: t("services.admin.button"),
       path: "request",
+      roles: ["admin"], // admin only
     },
     {
       icon: <Users className="w-6 h-6 text-cgreen" />,
@@ -42,6 +47,7 @@ export default function ServicesPage() {
       description: t("services.volunteer.description"),
       buttonText: t("services.volunteer.button"),
       path: "volunteer-signup",
+      roles: ["recipient", "admin", "donor", "driver", null], // visible to all
     },
     {
       icon: <HeartHandshake className="w-6 h-6 text-cgreen" />,
@@ -49,6 +55,7 @@ export default function ServicesPage() {
       description: t("services.donor.description"),
       buttonText: t("services.donor.button"),
       path: "support-offer",
+      roles: ["recipient", "admin", "donor", "driver", null], // visible to all
     },
     {
       icon: <BarChart3 className="w-6 h-6 text-cgreen" />,
@@ -56,8 +63,14 @@ export default function ServicesPage() {
       description: t("services.dashboard.description"),
       buttonText: t("services.dashboard.button"),
       path: "volunteer/dashboard",
+      roles: ["admin"], // admin only
     },
   ];
+
+  // Filter services based on user role
+  const visibleServices = services.filter((service) =>
+    service.roles.includes(user?.role || null)
+  );
 
   return (
     <section className="w-full py-20 bg-cbg px-6 md:px-16">
@@ -71,7 +84,7 @@ export default function ServicesPage() {
 
       {/* Services Grid */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-        {services.map((service, index) => (
+        {visibleServices.map((service, index) => (
           <div
             key={index}
             className="flex flex-col justify-between p-6 border rounded-2xl shadow-sm hover:shadow-md transition bg-white"

@@ -41,10 +41,10 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-cbg py-20 px-6">
-      <div className="max-w-5xl mx-auto text-center">
+      {/* <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-bold text-black mb-4">{t("title")}</h1>
         <p className="text-cgreen text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
-      </div>
+      </div> */}
 
       <section className="max-w-5xl mx-auto mt-16">
         <h2 className="text-2xl font-semibold text-black text-center mb-4">

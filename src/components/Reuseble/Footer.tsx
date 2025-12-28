@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Mail, Facebook, Instagram } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function Footer() {
@@ -28,11 +27,6 @@ export default function Footer() {
       </div>
       <div className="mt-4 flex justify-center text-center px-4">
         <p className="text-sm md:text-base leading-relaxed">{t("description")}</p>
-      </div>
-      <div className="mt-4 flex justify-center gap-6">
-        <Mail size={20} />
-        <Facebook size={20} />
-        <Instagram size={20} />
       </div>
       <div className="mt-4 flex justify-center">
         <p className="text-xs md:text-sm opacity-80">{t("copyright")}</p>

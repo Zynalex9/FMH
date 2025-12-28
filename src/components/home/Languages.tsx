@@ -27,16 +27,6 @@ export default function Languages() {
         >
           English
         </button>
-
-        <button
-          onClick={() => handleLanguageChange("fr")}
-          className={`border px-6 py-2 rounded-xl transition
-            ${locale === "fr" ? "bg-cgreen text-white" : "bg-sgreen text-cgreen hover:bg-green-100"}
-          `}
-        >
-          French
-        </button>
-
         <button
           onClick={() => handleLanguageChange("es")}
           className={`border px-6 py-2 rounded-xl transition
